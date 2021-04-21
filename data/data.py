@@ -6,8 +6,9 @@ import os
 with open("taipei-attractions.json", "r", encoding = "utf-8") as f:
     data = json.load(f)["result"]["results"]
 
-with open("C:\\Users\\Gary\\Desktop\\password.txt", "r") as f:
-    user, password = f.readline().split(",")
+file = os.path.join(os.getcwd(), "file.txt")
+with open(file, "r") as f:
+            user, password = f.readline().split(",")
 
 mydb = mysql.connector.connect(
     host = "localhost",
