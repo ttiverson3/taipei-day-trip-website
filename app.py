@@ -87,16 +87,17 @@ def attractionId(attractionId):
 		)
 		return response
 	
-	sql = f"SELECT url FROM image WHERE attr_id = {id}"
-	img_url = db.query(sql)
-	if len(img_url) != 0:
+	# 根據景點編號取得資料
+	sql = f"SELECT * FROM attraction WHERE id = {id}"
+	result = db.query(sql)
+	if len(result) != 0:
+		result = result[0]
+		sql = f"SELECT url FROM image WHERE attr_id = {id}"
+		img_url = db.query(sql)
 		# 圖片連結
 		img = []
 		for i in range(len(img_url)):
 			img = img + list(img_url[i])
-		# 根據景點編號取得資料
-		sql = f"SELECT * FROM attraction WHERE id = {id}"
-		result = db.query(sql)[0]
 		data = {
 			"id": result[0],
 			"name": result[1],

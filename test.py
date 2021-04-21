@@ -1,3 +1,29 @@
+import mysql.connector
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
-print(os.path.join(os.getcwd(), "password.txt"))
+class Connect:
+    def __init__(self):
+        self.dbconfig = {
+            "host": "localhost",
+            "user": os.getenv("user"),
+            "password": os.getenv("password"),
+            "database": "taipei"
+        }
+        try:
+            self.conn = mysql.connector.connect(**self.dbconfig)
+            self.cur = self.conn.cursor(buffered = True)
+            print('mysql conn success!')
+        except:
+            print("mysql conn error!")
+
+    def query(self, sql):
+        self.cur.execute(sql)
+        self.result = self.cur.fetchall()
+        return self.result
+
+db = Connect()
+sql = f"SELECT * FROM attraction WHERE id = 10"
+result = db.query(sql)
+print(len(result))
