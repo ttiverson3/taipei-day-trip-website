@@ -98,17 +98,17 @@ def attractionId(attractionId):
 		sql = f"SELECT * FROM attraction WHERE id = {id}"
 		result = db.query(sql)[0]
 		data = {
-				"id": result[0],
-				"name": result[1],
-				"category": result[2],
-				"description": result[3],
-				"address": result[4],
-				"transport": result[5],
-				"mrt": result[6],
-				"latitude": result[7],
-				"longitude": result[8],
-				"images": img
-			}
+			"id": result[0],
+			"name": result[1],
+			"category": result[2],
+			"description": result[3],
+			"address": result[4],
+			"transport": result[5],
+			"mrt": result[6],
+			"latitude": result[7],
+			"longitude": result[8],
+			"images": img
+		}
 		response = app.response_class(
 			response = json.dumps({"data": data}, sort_keys = False),
 			status = 200,
