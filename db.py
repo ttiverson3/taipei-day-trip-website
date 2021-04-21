@@ -1,6 +1,8 @@
 import mysql.connector
+import os
 
-with open("C:\\Users\\Gary\\Desktop\\password.txt", "r") as f:
+file = os.path.join(os.getcwd(), "file.txt")
+with open(file, "r") as f:
             user, password = f.readline().split(",")
 
 class Connect:

@@ -1,6 +1,7 @@
 import json
 import mysql.connector
 import re
+import os
 
 with open("taipei-attractions.json", "r", encoding = "utf-8") as f:
     data = json.load(f)["result"]["results"]
