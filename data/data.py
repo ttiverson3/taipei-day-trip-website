@@ -5,6 +5,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+with open("taipei-attractions.json", "r", encoding = "utf-8") as f:
+    data = json.load(f)["result"]["results"]
+
 mydb = mysql.connector.connect(
     host = "localhost",
     user = os.getenv("user"),
