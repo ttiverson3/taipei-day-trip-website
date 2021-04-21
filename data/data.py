@@ -2,18 +2,13 @@ import json
 import mysql.connector
 import re
 import os
-
-with open("taipei-attractions.json", "r", encoding = "utf-8") as f:
-    data = json.load(f)["result"]["results"]
-
-file = os.path.join(os.getcwd(), "file.txt")
-with open(file, "r") as f:
-            user, password = f.readline().split(",")
+from dotenv import load_dotenv
+load_dotenv()
 
 mydb = mysql.connector.connect(
     host = "localhost",
-    user = user,
-    password = password,
+    user = os.getenv("user"),
+    password = os.getenv("password"),
     database = "taipei"
 )
 mycursor = mydb.cursor(buffered = True)

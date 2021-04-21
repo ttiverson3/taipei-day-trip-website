@@ -1,16 +1,14 @@
 import mysql.connector
 import os
-
-file = os.path.join(os.getcwd(), "file.txt")
-with open(file, "r") as f:
-            user, password = f.readline().split(",")
+from dotenv import load_dotenv
+load_dotenv()
 
 class Connect:
     def __init__(self):
         self.dbconfig = {
             "host": "localhost",
-            "user": user,
-            "password": password,
+            "user": os.getenv("user"),
+            "password": os.getenv("password"),
             "database": "taipei"
         }
         try:
