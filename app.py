@@ -25,9 +25,9 @@ def thankyou():
 def attractions():
 	page = int(request.args.get("page", 0))
 	start = page * 12 + 1
-	keyword = request.args.get("keyword", "")
+	keyword = request.args.get("keyword")
 
-	if keyword == "":
+	if keyword == None:
 		sql = f"SELECT * FROM attraction WHERE id BETWEEN {start} AND {start + 11}"
 		result = db.query(sql)
 	else:
