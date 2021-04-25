@@ -24,14 +24,13 @@ def thankyou():
 @app.route("/api/attractions")
 def attractions():
 	page = int(request.args.get("page", 0))
-	start = page * 12 + 1
 	keyword = request.args.get("keyword")
 
 	if keyword == None:
-		sql = f"SELECT * FROM attraction WHERE id BETWEEN {start} AND {start + 11}"
+		sql = f"SELECT * FROM attraction ORDER BY id LIMIT {page}, 12"
 		result = db.query(sql)
 	else:
-		sql = f"SELECT * FROM attraction WHERE name LIKE '%{keyword}%' LIMIT {start - 1}, 12"
+		sql = f"SELECT * FROM attraction WHERE name LIKE '%{keyword}%' LIMIT {page}, 12"
 		result = db.query(sql)
 
 	if len(result) != 0:
@@ -76,9 +75,44 @@ def attractions():
 
 @app.route("/api/attraction/<attractionId>")
 def attractionId(attractionId):
-	id = attractionId
 	try:
-		int(id)
+		id = int(attractionId)
+		# 根據景點編號取得資料
+		sql = f"SELECT * FROM attraction WHERE id = {id}"
+		result = db.query(sql)
+		if len(result) != 0:
+			result = result[0]
+			sql = f"SELECT url FROM image WHERE attr_id = {id}"
+			img_url = db.query(sql)
+			# 圖片連結
+			img = []
+			for i in range(len(img_url)):
+				img = img + list(img_url[i])
+			data = {
+				"id": result[0],
+				"name": result[1],
+				"category": result[2],
+				"description": result[3],
+				"address": result[4],
+				"transport": result[5],
+				"mrt": result[6],
+				"latitude": result[7],
+				"longitude": result[8],
+				"images": img
+			}
+			response = app.response_class(
+				response = json.dumps({"data": data}, sort_keys = False),
+				status = 200,
+				mimetype = "application/json"
+			)
+			return response
+		else:
+			response = app.response_class(
+				response = json.dumps({"error": True,"message": "自訂的錯誤訊息"}, sort_keys = False),
+				status = 500,
+				mimetype = "application/json"
+			)
+			return response
 	except:
 		response = app.response_class(
 			response = json.dumps({"error": True,"message": "景點編號不正確"}, sort_keys = False),
@@ -86,43 +120,6 @@ def attractionId(attractionId):
 			mimetype = "application/json"
 		)
 		return response
-	
-	# 根據景點編號取得資料
-	sql = f"SELECT * FROM attraction WHERE id = {id}"
-	result = db.query(sql)
-	if len(result) != 0:
-		result = result[0]
-		sql = f"SELECT url FROM image WHERE attr_id = {id}"
-		img_url = db.query(sql)
-		# 圖片連結
-		img = []
-		for i in range(len(img_url)):
-			img = img + list(img_url[i])
-		data = {
-			"id": result[0],
-			"name": result[1],
-			"category": result[2],
-			"description": result[3],
-			"address": result[4],
-			"transport": result[5],
-			"mrt": result[6],
-			"latitude": result[7],
-			"longitude": result[8],
-			"images": img
-		}
-		response = app.response_class(
-			response = json.dumps({"data": data}, sort_keys = False),
-			status = 200,
-			mimetype = "application/json"
-		)
-		return response
-	else:
-		response = app.response_class(
-			response = json.dumps({"error": True,"message": "自訂的錯誤訊息"}, sort_keys = False),
-			status = 500,
-			mimetype = "application/json"
-		)
-		return response
 
 
-app.run(host="0.0.0.0", port=3000)
+app.run(debug=True ,port=3000)
