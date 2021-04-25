@@ -1,10 +1,10 @@
 from flask import *
-from db import *
+import db
 
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
-db = Connect()
+db = db.Connect()
 
 # Pages
 @app.route("/")
@@ -122,4 +122,4 @@ def attractionId(attractionId):
 		return response
 
 
-app.run(debug=True ,port=3000)
+app.run(host="0.0.0.0",port=3000)
