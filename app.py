@@ -1,10 +1,14 @@
 from flask import *
-import db
+from dbconf import Connect
 
-app=Flask(__name__)
+app = Flask(
+	__name__,
+	static_url_path= "/",
+	static_folder = "static"
+)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
-db = db.Connect()
+db = Connect()
 
 # Pages
 @app.route("/")
@@ -20,7 +24,7 @@ def booking():
 def thankyou():
 	return render_template("thankyou.html")
 
-# API
+# APIs
 @app.route("/api/attractions")
 def attractions():
 	page = int(request.args.get("page", 0))
@@ -122,4 +126,5 @@ def attractionId(attractionId):
 		return response
 
 
-app.run(host="0.0.0.0",port=3000)
+if __name__ == "__main__":
+	app.run(debug = True, port = 3000)
