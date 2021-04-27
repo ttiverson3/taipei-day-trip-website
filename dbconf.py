@@ -14,9 +14,9 @@ class Connect:
         try:
             self.conn = mysql.connector.connect(**self.dbconfig)
             self.cur = self.conn.cursor(buffered = True)
-            print('mysql conn success!')
+            print("mysql connect success!")
         except:
-            print("mysql conn error!")
+            print("mysql connect error!")
 
     def query(self, sql):
         self.cur.execute(sql)
