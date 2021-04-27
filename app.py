@@ -31,7 +31,7 @@ def attractions():
 	keyword = request.args.get("keyword")
 
 	if keyword == None:
-		sql = f"SELECT * FROM attraction ORDER BY id LIMIT {page}, 12"
+		sql = f"SELECT * FROM attraction ORDER BY id LIMIT {page * 12}, 12"
 		result = db.query(sql)
 	else:
 		sql = f"SELECT * FROM attraction WHERE name LIKE '%{keyword}%' LIMIT {page}, 12"
