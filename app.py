@@ -34,7 +34,7 @@ def attractions_api():
 		sql = f"SELECT * FROM attraction ORDER BY id LIMIT {page * 12}, 12"
 		result = db.query(sql)
 	else:
-		sql = f"SELECT * FROM attraction WHERE name LIKE '%{keyword}%' LIMIT {page}, 12"
+		sql = f"SELECT * FROM attraction WHERE name LIKE '%{keyword}%' LIMIT {page * 12}, 12"
 		result = db.query(sql)
 
 	if len(result) != 0:
@@ -71,7 +71,7 @@ def attractions_api():
 		return response
 	else:
 		response = app.response_class(
-			response = json.dumps({"error": True,"message": "自訂的錯誤訊息"}, sort_keys = False),
+			response = json.dumps({"error": True,"message": "關鍵字查無此景點"}, sort_keys = False),
 			status = 500,
 			mimetype = "application/json"
 		)
@@ -127,4 +127,4 @@ def attractionId_api(attractionId):
 
 
 if __name__ == "__main__":
-	app.run(debug = True, port = 3000)
+	app.run(host = "0.0.0.0", port = 3000)

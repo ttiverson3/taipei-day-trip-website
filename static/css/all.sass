@@ -16,9 +16,15 @@ $gray: #757575
 html, body
     margin: 0
     padding: 0
+    height: 100%
 
 header
     height: 54px
+    width: 100%
+    position: fixed
+    z-index: 1
+    background-color: #fff
+    top: 0
     div
         max-width: 1200px
         display: flex
@@ -47,6 +53,9 @@ header
                 @include mobile
                     width: 75px
                     margin: 0 0
+
+.space
+    height: 54px
 
 section
     height: 320px
@@ -151,7 +160,7 @@ main
                     padding: 0px 10px
                 @include pad
                     margin-top: 12px
-    .finish
+    #finish
         text-align: center
         color: $gray
 
