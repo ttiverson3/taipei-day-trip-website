@@ -14,6 +14,7 @@ html, body {
   width: 100%;
   min-height: 100%;
   padding-bottom: 104px;
+  padding-top: 54px;
 }
 
 #container header {
@@ -53,13 +54,15 @@ html, body {
 
 @media screen and (max-width: 600px) {
   #container header div h1 {
-    width: 180px;
-    margin-left: 3px;
+    width: 150px;
+    margin-left: 9.75px;
   }
 }
 
 #container header div ul {
   display: flex;
+  padding-inline-start: 0;
+  margin-right: 3px;
 }
 
 #container header div ul li {
@@ -75,10 +78,6 @@ html, body {
     width: 75px;
     margin: 0 0;
   }
-}
-
-#container .space {
-  height: 54px;
 }
 
 #container section {

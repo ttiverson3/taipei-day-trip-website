@@ -22,6 +22,7 @@ html, body
     width: 100%
     min-height: 100%
     padding-bottom: 104px
+    padding-top: 54px
     header
         height: 54px
         width: 100%
@@ -46,10 +47,12 @@ html, body
                 padding-top: 5px
                 cursor: pointer
                 @include mobile
-                    width: 180px
-                    margin-left: 3px
+                    width: 150px
+                    margin-left: 9.75px
             ul
                 display: flex
+                padding-inline-start: 0
+                margin-right: 3px
                 li
                     color: $gray
                     list-style: none
@@ -59,10 +62,6 @@ html, body
                     @include mobile
                         width: 75px
                         margin: 0 0
-
-    .space
-        height: 54px
-
     section
         height: 320px
         max-width: 100%
