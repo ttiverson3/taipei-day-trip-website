@@ -33,6 +33,10 @@ header div {
   }
 }
 
+header div a {
+  text-decoration: none;
+}
+
 header div h1 {
   color: #489;
   margin: 0;
@@ -149,6 +153,7 @@ section .welcome .search #btn {
 main {
   max-width: 1200px;
   margin: 2% auto;
+  min-height: 40.75%;
 }
 
 @media screen and (max-width: 1200px) {
@@ -242,6 +247,7 @@ main #finish {
 footer {
   height: 104px;
   background-color: #757575;
+  bottom: 0px;
 }
 
 footer p {
