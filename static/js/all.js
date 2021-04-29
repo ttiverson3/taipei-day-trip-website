@@ -16,7 +16,6 @@ let get_attractions = function(page, keyword = "") {
             }
             else {
                 nextPage = data.nextPage;
-                console.log(nextPage);
                 let attr = data.data;
                 for(i = 0; i < attr.length; i++) {
                     let li = document.createElement("li");
@@ -55,7 +54,7 @@ window.addEventListener("scroll", () => {
                     }
             }
             else{
-                window.setTimeout(get_attractions(nextPage, keyword.value), 1000);
+                window.setTimeout(get_attractions(nextPage, keyword.value), 500);
             }
     }
 });
