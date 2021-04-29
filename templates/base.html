@@ -10,27 +10,29 @@
     <title>{{ title }}</title>
 </head>
 <body>
-    <header>
-        {% block header %}
-        <div>
-            <a href="#"><h1>台北一日遊</h1></a>
-            <ul>
-                <li>預定行程</li>
-                <li>登入/註冊</li>
-            </ul>
-        </div>
-        {% endblock %}
-    </header>
-    <div class="space"></div>
-    <section>
-        {% block section %}{% endblock %}
-    </section>
-    <main>
-        {% block main %}{% endblock %}
-    </main>
-    <footer>
-        <p>COPYRIGHT © 2021 台北一日遊</p>
-    </footer>
+    <div id="container">
+        <header>
+            {% block header %}
+            <div>
+                <a href="#"><h1>台北一日遊</h1></a>
+                <ul>
+                    <li>預定行程</li>
+                    <li>登入/註冊</li>
+                </ul>
+            </div>
+            {% endblock %}
+        </header>
+        <div class="space"></div>
+        <section>
+            {% block section %}{% endblock %}
+        </section>
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+        <footer>
+            <p>COPYRIGHT © 2021 台北一日遊</p>
+        </footer>
+    </div>
     <script src="{{ url_for('static', filename = 'js/all.js') }}"></script>
 </body>
 </html>
