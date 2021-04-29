@@ -26,11 +26,11 @@ def thankyou():
 
 # APIs
 @app.route("/api/attractions")
-def attractions():
+def attractions_api():
 	page = int(request.args.get("page", 0))
-	keyword = request.args.get("keyword")
+	keyword = request.args.get("keyword", "")
 
-	if keyword == None:
+	if keyword == "":
 		sql = f"SELECT * FROM attraction ORDER BY id LIMIT {page * 12}, 12"
 		result = db.query(sql)
 	else:
@@ -78,7 +78,7 @@ def attractions():
 		return response
 
 @app.route("/api/attraction/<attractionId>")
-def attractionId(attractionId):
+def attractionId_api(attractionId):
 	try:
 		id = int(attractionId)
 		# 根據景點編號取得資料
@@ -127,4 +127,4 @@ def attractionId(attractionId):
 
 
 if __name__ == "__main__":
-	app.run(host = "0.0.0.0", port = 3000)
+	app.run(debug = True, port = 3000)

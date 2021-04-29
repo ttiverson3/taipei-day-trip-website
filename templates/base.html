@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');</style>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/all.css') }}">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <header>
+        {% block header %}
+        <div>
+            <h1>台北一日遊</h1>
+            <ul>
+                <li>預定行程</li>
+                <li>登入/註冊</li>
+            </ul>
+        </div>
+        {% endblock %}
+    </header>
+    <section>
+        {% block section %}{% endblock %}
+    </section>
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+    <footer>
+        <p>COPYRIGHT © 2021 台北一日遊</p>
+    </footer>
+    <script src="{{ url_for('static', filename = 'js/all.js') }}"></script>
+</body>
+</html>

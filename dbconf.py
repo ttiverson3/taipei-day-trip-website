@@ -1,4 +1,5 @@
 import mysql.connector
+from mysql.connector import pooling
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -12,11 +13,19 @@ class Connect:
             "database": "taipei"
         }
         try:
-            self.conn = mysql.connector.connect(**self.dbconfig)
+            self.conn_pool = mysql.connector.pooling.MySQLConnectionPool(
+                pool_name = "mypool",
+                pool_size = 5,
+                pool_reset_session = True,
+                **self.dbconfig
+            )
+            self.conn = self.conn_pool.get_connection()
             self.cur = self.conn.cursor(buffered = True)
-            print("mysql connect success!")
-        except:
-            print("mysql connect error!")
+            # self.conn = mysql.connector.connect(**self.dbconfig)
+            # self.cur = self.conn.cursor(buffered = True)
+            # print("mysql connect success!")
+        except Exception as e:
+            print("mysql connect error!", e)
 
     def query(self, sql):
         self.cur.execute(sql)

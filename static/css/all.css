@@ -1,0 +1,245 @@
+* {
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", sans-serif;
+  position: relative;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  height: 54px;
+}
+
+header div {
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+@media screen and (max-width: 600px) {
+  header div {
+    padding: 0 0;
+  }
+}
+
+header div h1 {
+  color: #489;
+  margin: 0;
+  font-size: 30px;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  header div h1 {
+    width: 180px;
+    margin-left: 3px;
+  }
+}
+
+header div ul {
+  display: flex;
+}
+
+header div ul li {
+  color: #757575;
+  list-style: none;
+  margin: 0 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  header div ul li {
+    width: 75px;
+    margin: 0 0;
+  }
+}
+
+section {
+  height: 320px;
+  max-width: 100%;
+  background: linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
+  background-image: url("/imgs/welcome.png"), linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
+  background-repeat: no-repeat;
+  background-position: 80%;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+  section {
+    background-position: right -105px bottom, right;
+    background-size: 80%, cover;
+  }
+}
+
+section .welcome {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0px 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  section .welcome {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  section .welcome {
+    width: 100%;
+  }
+}
+
+section .welcome .slogan {
+  color: #fff;
+  margin-top: 60px;
+}
+
+section .welcome .search {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+section .welcome .search input {
+  width: 400px;
+  height: 46px;
+  padding-left: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-color: transparent;
+}
+
+@media screen and (max-width: 1200px) {
+  section .welcome .search input {
+    max-width: 65%;
+  }
+}
+
+section .welcome .search #btn {
+  width: 60px;
+  height: 46px;
+  background-image: url("/imgs/icon_search.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #489;
+  cursor: pointer;
+  border-color: #489;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  border-color: transparent;
+}
+
+main {
+  max-width: 1200px;
+  margin: 2% auto;
+}
+
+@media screen and (max-width: 1200px) {
+  main {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  main {
+    width: 90%;
+  }
+}
+
+main ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+main ul li {
+  width: 270px;
+  height: 242px;
+  list-style: none;
+  margin: 1% 1%;
+  box-shadow: 1px 1px 5px 1px #757575;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+  main ul li {
+    width: 46%;
+    margin: 10px auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  main ul li {
+    width: 80%;
+    margin: 10px auto;
+  }
+}
+
+main ul li img {
+  height: 160px;
+  width: 100%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+main ul li h2 {
+  height: 12%;
+  margin: 0 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #757575;
+  font-size: 16px;
+  padding-top: 8px;
+  padding-left: 10px;
+  margin-top: 2%;
+}
+
+main ul li div {
+  height: 8%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #757575;
+  margin-top: 5%;
+}
+
+main ul li div p {
+  margin: 0 0;
+  padding: 0px 10px;
+}
+
+@media screen and (max-width: 1200px) {
+  main ul li div {
+    margin-top: 12px;
+  }
+}
+
+main .finish {
+  text-align: center;
+  color: #757575;
+}
+
+footer {
+  height: 104px;
+  background-color: #757575;
+}
+
+footer p {
+  font-size: 16px;
+  color: #fff;
+  width: 250px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/*# sourceMappingURL=all.css.map */
