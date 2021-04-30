@@ -50,17 +50,20 @@ window.addEventListener("scroll", () => {
     // const lastChild = ul.lastChild;
     // const rect = lastChild.getBoundingClientRect();
     // console.log(Math.ceil(scrolled), Math.ceil(scrollable));
-    if (Math.ceil(scrolled) === scrollable) {
+    setTimeout(() => {
+        if (Math.ceil(scrolled) === scrollable) {
             if(nextPage === null){
                     if(finish.textContent === ""){
-                        finish.textContent = "無更多景點！！！";
+                        finish.textContent = "無更多景點！！！"
                     }
             }
             else{
-                console.log(nextPage);
-                get_attractions(nextPage, keyword.value);
+                console.log(nextPage)
+                get_attractions(nextPage, keyword.value)
             }
     }
+    }, 250)
+    
 });
 
 btn.addEventListener("click", () => {
