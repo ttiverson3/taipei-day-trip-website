@@ -45,12 +45,12 @@ let get_attractions = function(page, keyword = "") {
 get_attractions(0);
 
 window.addEventListener("scroll", () => {
-    // const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-    // const scrolled = window.scrollY;
-    const lastChild = ul.lastChild;
-    const rect = lastChild.getBoundingClientRect();
-    // console.log(rect.top);
-    if (rect.top === 551) {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = window.scrollY;
+    // const lastChild = ul.lastChild;
+    // const rect = lastChild.getBoundingClientRect();
+    // console.log(Math.ceil(scrolled), Math.ceil(scrollable));
+    if (Math.ceil(scrolled) === scrollable) {
             if(nextPage === null){
                     if(finish.textContent === ""){
                         finish.textContent = "無更多景點！！！";
