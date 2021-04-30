@@ -10,7 +10,8 @@ class Connect:
             "host": "localhost",
             "user": os.getenv("user"),
             "password": os.getenv("password"),
-            "database": "taipei"
+            "database": "taipei",
+            "auth_plugin": "mysql_native_password"
         }
         try:
             self.conn_pool = mysql.connector.pooling.MySQLConnectionPool(
