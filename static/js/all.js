@@ -45,9 +45,11 @@ let get_attractions = function(page, keyword = "") {
 get_attractions(0);
 
 window.addEventListener("scroll", () => {
-    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-    const scrolled = window.scrollY;
-    if (scrollable === scrolled) {
+    // const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    // const scrolled = window.scrollY;
+    const lastChild = ul.lastChild;
+    const rect = lastChild.getBoundingClientRect();
+    if (rect.top < 690) {
             if(nextPage === null){
                     if(finish.textContent === ""){
                         finish.textContent = "無更多景點！！！";
