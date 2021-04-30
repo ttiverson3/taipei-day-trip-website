@@ -56,6 +56,7 @@ window.addEventListener("scroll", () => {
                     }
             }
             else{
+                console.log(nextPage);
                 window.setTimeout(get_attractions(nextPage, keyword.value), 500);
             }
     }
