@@ -30,5 +30,3 @@ class Connect:
         self.cur.execute(sql)
         self.result = self.cur.fetchall()
         return self.result
-
-a = Connect()
