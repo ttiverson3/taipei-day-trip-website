@@ -14,17 +14,15 @@ class Connect:
             "auth_plugin": "mysql_native_password"
         }
         try:
-            self.conn_pool = mysql.connector.pooling.MySQLConnectionPool(
+            self.cnxpool = mysql.connector.pooling.MySQLConnectionPool(
                 pool_name = "mypool",
                 pool_size = 10,
                 pool_reset_session = True,
                 **self.dbconfig
             )
-            self.conn = self.conn_pool.get_connection()
-            self.cur = self.conn.cursor(buffered = True)
-            # self.conn = mysql.connector.connect(**self.dbconfig)
-            # self.cur = self.conn.cursor(buffered = True)
-            # print("mysql connect success!")
+            self.cnx = self.cnxpool.get_connection()
+            self.cur = self.cnx.cursor(buffered = True)
+            print("mysql connect success!")
         except Exception as e:
             print("mysql connect error!", e)
 
@@ -32,3 +30,5 @@ class Connect:
         self.cur.execute(sql)
         self.result = self.cur.fetchall()
         return self.result
+
+a = Connect()
