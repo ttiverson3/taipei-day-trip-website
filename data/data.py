@@ -12,7 +12,8 @@ mydb = mysql.connector.connect(
     host = "localhost",
     user = os.getenv("user"),
     password = os.getenv("password"),
-    database = "taipei"
+    database = "taipei",
+    auth_plugin = "mysql_native_password"
 )
 mycursor = mydb.cursor(buffered = True)
 
