@@ -60,8 +60,8 @@ window.addEventListener("scroll", () => {
                     }
             }
             else{
-                console.log(nextPage);
-                setTimeout(getAttractionData(nextPage, keyword.value), 1000);
+                // console.log(nextPage);
+                getAttractionData(nextPage, keyword.value);
             }
     }
 });
