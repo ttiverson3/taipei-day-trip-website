@@ -55,8 +55,8 @@ window.addEventListener("scroll", () => {
     const scrolled = window.scrollY;
     // const lastChild = ul.lastChild;
     // const rect = lastChild.getBoundingClientRect();
-    // console.log(scrolled, scrollable);
-    if ((scrollable - scrolled) < 1000 && flag === true) {
+    console.log(scrollable - scrolled);
+    if ((scrollable - scrolled) < 1200 && flag === true) {
             if(nextPage === null){
                     if(finish.textContent === ""){
                         finish.textContent = "無更多景點！！！";
