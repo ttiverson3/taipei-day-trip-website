@@ -1,0 +1,78 @@
+@import "media.sass"
+$blue: #489
+$gray: #757575
+@mixin center
+    top: 50%
+    left: 50%
+    // transform: translateX(-50%) translateY(-50%)
+    transform: translate(-50%, -50%)
+
+*
+    // border: 1px solid #000
+    box-sizing: border-box
+    font-family: "Noto Sans TC", sans-serif
+    position: relative
+
+html, body
+    margin: 0
+    padding: 0
+    height: 100%
+
+
+#container
+    width: 100%
+    min-height: 100%
+    padding-bottom: 104px
+    padding-top: 54px
+    header
+        height: 54px
+        width: 100%
+        position: fixed
+        z-index: 1
+        background-color: #fff
+        top: 0
+        div
+            max-width: 1200px
+            display: flex
+            justify-content: space-between
+            margin: 0 auto
+            padding: 0 10px
+            @include mobile
+                padding: 0 0
+            a
+                text-decoration: none
+            h1
+                color: $blue
+                margin: 0
+                font-size: 30px
+                padding-top: 5px
+                cursor: pointer
+                @include mobile
+                    width: 150px
+                    margin-left: 9.75px
+            ul
+                display: flex
+                padding-inline-start: 0
+                margin-right: 3px
+                li
+                    color: $gray
+                    list-style: none
+                    margin: 0 5px
+                    font-size: 16px
+                    cursor: pointer
+                    @include mobile
+                        width: 75px
+                        margin: 0 0
+
+    footer
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 100%
+        height: 104px
+        background-color: $gray
+        p
+            font-size: 16px
+            color: #fff
+            width: 250px
+            +center
