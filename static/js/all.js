@@ -72,7 +72,7 @@ btn.addEventListener("click", () => {
         while(ul.firstChild) {
             ul.removeChild(ul.firstChild);
         }
-        get_attractions(0, keyword.value);
+        getAttractionData(0, keyword.value);
     }
 });
 
@@ -84,7 +84,7 @@ keyword.addEventListener("keydown", (e) => {
             while(ul.firstChild) {
                 ul.removeChild(ul.firstChild);
             }
-            get_attractions(0, keyword.value);
+            getAttractionData(0, keyword.value);
         }
     }
 });
