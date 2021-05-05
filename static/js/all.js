@@ -16,8 +16,9 @@ let getAttractionData = function(page, keyword = "") {
         }
         else {
             nextPage = data.nextPage;
-            console.log(nextPage)
+            console.log(nextPage);
             let attr = data.data;
+            flag = true;
             for(i = 0; i < attr.length; i++) {
                 let li = document.createElement("li");
                 let img = document.createElement("img");
@@ -41,7 +42,7 @@ let getAttractionData = function(page, keyword = "") {
                 li.appendChild(h2);
                 li.appendChild(div);
             }
-            flag = true;
+            
         }
         
     })
@@ -55,7 +56,7 @@ window.addEventListener("scroll", () => {
     // const lastChild = ul.lastChild;
     // const rect = lastChild.getBoundingClientRect();
     // console.log(scrolled, scrollable);
-    if ((scrollable - scrolled ) < 500 && flag === true) {
+    if ((scrollable - scrolled) < 500 && flag === true) {
             if(nextPage === null){
                     if(finish.textContent === ""){
                         finish.textContent = "無更多景點！！！";
