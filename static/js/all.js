@@ -16,7 +16,7 @@ let getAttractionData = function(page, keyword = "") {
         }
         else {
             nextPage = data.nextPage;
-            console.log(nextPage);
+            // console.log(nextPage);
             let attr = data.data;
             flag = true;
             for(i = 0; i < attr.length; i++) {
@@ -55,8 +55,8 @@ window.addEventListener("scroll", () => {
     const scrolled = window.scrollY;
     // const lastChild = ul.lastChild;
     // const rect = lastChild.getBoundingClientRect();
-    console.log(scrollable - scrolled);
-    if ((scrollable - scrolled) < 1200 && flag === true) {
+    // console.log(scrollable * 0.7, scrolled);
+    if (scrollable * 0.7 < scrolled && flag === true) {
             if(nextPage === null){
                     if(finish.textContent === ""){
                         finish.textContent = "無更多景點！！！";
