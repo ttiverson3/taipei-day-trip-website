@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", sans-serif;
+  position: relative;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#container {
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 104px;
+  padding-top: 54px;
+}
+
+#container header {
+  height: 54px;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  background-color: #fff;
+  top: 0;
+}
+
+#container header div {
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+@media screen and (max-width: 600px) {
+  #container header div {
+    padding: 0 0;
+  }
+}
+
+#container header div a {
+  text-decoration: none;
+}
+
+#container header div h1 {
+  color: #489;
+  margin: 0;
+  font-size: 30px;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  #container header div h1 {
+    width: 150px;
+    margin-left: 9.75px;
+  }
+}
+
+#container header div ul {
+  display: flex;
+  padding-inline-start: 0;
+  margin-right: 3px;
+}
+
+#container header div ul li {
+  color: #757575;
+  list-style: none;
+  margin: 0 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  #container header div ul li {
+    width: 75px;
+    margin: 0 0;
+  }
+}
+
+#container footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 104px;
+  background-color: #757575;
+}
+
+#container footer p {
+  font-size: 16px;
+  color: #fff;
+  width: 250px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
