@@ -11,7 +11,7 @@ db = Connect()
 def attractions_list():
 	page = int(request.args.get("page", 0))
 	keyword = request.args.get("keyword", "")
-	result = db.attractions_list(page, keyword)
+	result = db.get_attractions_list(page, keyword)
 
 	if result != []:
 		data = []
@@ -21,7 +21,7 @@ def attractions_list():
 		for record in result:
 			# 圖片連結
 			id = record[0]
-			img_urls = db.img_urls(id)
+			img_urls = db.get_img_urls(id)
 			url_list = [url for tup_url in img_urls for url in tup_url]
 			# 景點資料
 			data.append({
@@ -55,10 +55,10 @@ def attraction(attractionId):
 	try:
 		id = int(attractionId)
 		# 根據編號取得景點資料
-		result = db.attraction(id)
+		result = db.get_attraction(id)
 		if result != []:
 			id = result[0]
-			img_urls = db.img_urls(id)
+			img_urls = db.get_img_urls(id)
 			# 圖片連結
 			url_list = [url for tup_url in img_urls for url in tup_url]
 			data = {
