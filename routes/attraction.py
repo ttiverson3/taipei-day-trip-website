@@ -8,18 +8,12 @@ attraction_api = Blueprint("attraction_api", __name__)
 db = Connect()
 
 @attraction_api.route("/attractions")
-def attractions():
+def attractions_list():
 	page = int(request.args.get("page", 0))
 	keyword = request.args.get("keyword", "")
+	result = db.attractions_list(page, keyword)
 
-	if keyword == "":
-		sql = f"SELECT * FROM attraction ORDER BY id LIMIT {page * 12}, 12"
-		result = db.query(sql)
-	else:
-		sql = f"SELECT * FROM attraction WHERE name LIKE '%{keyword}%' LIMIT {page * 12}, 12"
-		result = db.query(sql)
-
-	if len(result) != 0:
+	if result != []:
 		data = []
 		next_page = page + 1
 		if len(result) < 12:
@@ -27,11 +21,8 @@ def attractions():
 		for record in result:
 			# 圖片連結
 			id = record[0]
-			sql = f"SELECT url FROM image WHERE attr_id = {id}"
-			img_url = db.query(sql)
-			img = []
-			for i in range(len(img_url)):
-				img += list(img_url[i])
+			img_urls = db.img_urls(id)
+			url_list = [url for tup_url in img_urls for url in tup_url]
 			# 景點資料
 			data.append({
 				"id": record[0],
@@ -43,7 +34,7 @@ def attractions():
 				"mrt": record[6],
 				"latitude": record[7],
 				"longitude": record[8],
-				"images": img
+				"images": url_list
 			})
 			response = Response(
 				response = json.dumps({"nextPage": next_page, "data": data}, sort_keys = False),
@@ -63,17 +54,13 @@ def attractions():
 def attraction(attractionId):
 	try:
 		id = int(attractionId)
-		# 根據景點編號取得資料
-		sql = f"SELECT * FROM attraction WHERE id = {id}"
-		result = db.query(sql)
-		if len(result) != 0:
-			result = result[0]
-			sql = f"SELECT url FROM image WHERE attr_id = {id}"
-			img_url = db.query(sql)
+		# 根據編號取得景點資料
+		result = db.attraction(id)
+		if result != []:
+			id = result[0]
+			img_urls = db.img_urls(id)
 			# 圖片連結
-			img = []
-			for i in range(len(img_url)):
-				img = img + list(img_url[i])
+			url_list = [url for tup_url in img_urls for url in tup_url]
 			data = {
 				"id": result[0],
 				"name": result[1],
@@ -84,7 +71,7 @@ def attraction(attractionId):
 				"mrt": result[6],
 				"latitude": result[7],
 				"longitude": result[8],
-				"images": img
+				"images": url_list
 			}
 			response = Response(
 				response = json.dumps({"data": data}, sort_keys = False),

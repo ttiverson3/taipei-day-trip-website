@@ -6,8 +6,10 @@ app = Flask(
 	static_url_path= "/",
 	static_folder = "static"
 )
-app.config["JSON_AS_ASCII"]=False
-app.config["TEMPLATES_AUTO_RELOAD"]=True
+app.config.from_object("config")
+app.config["DEBUG"]
+app.config["JSON_AS_ASCII"] = False
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # Pages
 @app.route("/")
@@ -29,5 +31,4 @@ app.register_blueprint(attraction_api, url_prefix = "/api")
 
 
 if __name__ == "__main__":
-	# app.run(host = "0.0.0.0", port = 3000)
-	app.run(debug = True, port = 3000)
+	app.run(host = app.config["HOST"], port = 3000)
