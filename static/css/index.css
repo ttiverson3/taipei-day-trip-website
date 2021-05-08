@@ -228,6 +228,7 @@ html, body {
   box-shadow: 1px 1px 5px 1px #757575;
   border-radius: 4px;
   cursor: pointer;
+  overflow: hidden;
 }
 
 #container main ul a li img {

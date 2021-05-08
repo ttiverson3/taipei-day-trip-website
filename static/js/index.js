@@ -1,94 +1,113 @@
-const ul = document.getElementById("attractions");
-const finish = document.getElementById("finish");
-const btn = document.getElementById("btn");
-const keyword = document.getElementsByName("keyword")[0];
-let nextPage;
-let flag = false;
+let flag = false; // 紀錄 API 要求是否已完成
+let nextPage; // 紀錄已載入頁數
 
-let getAttractionData = function(page, keyword = "") {
-    fetch(`/api/attractions?page=${page}&keyword=${keyword}`, {
-        method: "GET",
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.error) {
-            finish.textContent = data.message;
+let models = {
+    data: null,
+    getAttractionData: function(page, keyword = ""){
+        let url = `/api/attractions?page=${page}&keyword=${keyword}`;
+        return fetch(url).then((response) => {
+            return response.json();
+        }).then((result) => {
+            this.data = result;
+            flag = true; // 要求已完成
+        }).catch(error => console.log(error));
+    }
+};
+
+let views = {
+    renderData: function(){
+        if(!models.data.error){
+            const list = document.getElementById("attractions");
+            nextPage = models.data.nextPage;
+            console.log(nextPage);
+            let attractionData = models.data.data;
+            attractionData.forEach(data => {
+                let link = document.createElement("a");
+                let card = document.createElement("li");
+                let image = document.createElement("img");
+                let name = document.createElement("h2");
+                let info = document.createElement("div");
+                let mrt = document.createElement("p");
+                let category = document.createElement("p");
+                link.href = "attraction/" + data.id;
+                image.src = data.images[0];
+                name.textContent = data.name;
+                mrt.textContent = data.mrt;
+                category.textContent = data.category;
+                list.appendChild(link);
+                link.appendChild(card);
+                card.appendChild(image);
+                card.appendChild(name);
+                card.appendChild(info);
+                info.appendChild(mrt);
+                info.appendChild(category);
+            });
         }
-        else {
-            nextPage = data.nextPage;
-            // console.log(nextPage);
-            let attr = data.data;
-            flag = true;
-            for(i = 0; i < attr.length; i++) {
-                let li = document.createElement("li");
-                let img = document.createElement("img");
-                let h2 = document.createElement("h2");
-                let div = document.createElement("div");
-                let p1 = document.createElement("p");
-                let p2 = document.createElement("p");
-                let a = document.createElement("a");
-
-                img.src = attr[i].images[0];
-                h2.textContent = attr[i].name;
-                p1.textContent = attr[i].mrt;
-                p2.textContent = attr[i].category;
-                a.href = "attraction/" + attr[i].id;
-
-                div.appendChild(p1);
-                div.appendChild(p2);
-                ul.appendChild(a);
-                a.appendChild(li);
-                li.appendChild(img);
-                li.appendChild(h2);
-                li.appendChild(div);
-            }
-            
+        else{
+            views.renderFinishMsg();
         }
+    },
+    renderFinishMsg: function(){
+        let msg = document.getElementById("finish");
+        msg.textContent = "無更多景點！！！";
         
-    })
-    .catch(error => console.log(error))
-}
-getAttractionData(0);
+    },
+    removeFinishMsg: function(){
+        let msg = document.getElementById("finish");
+        msg.textContent = "";
+    }
+};
 
-window.addEventListener("scroll", () => {
-    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-    const scrolled = window.scrollY;
-    // const lastChild = ul.lastChild;
-    // const rect = lastChild.getBoundingClientRect();
-    // console.log(scrollable * 0.7, scrolled);
-    if (scrollable * 0.7 < scrolled && flag === true) {
-            if(nextPage === null){
-                    if(finish.textContent === ""){
-                        finish.textContent = "無更多景點！！！";
-                    }
+let controllers = {
+    init: function(){
+        models.getAttractionData(0).then(() => {
+            views.renderData();
+        });
+    },
+    scroll: function(){
+        let scrollable = document.documentElement.scrollHeight - window.innerHeight; // 可捲動高度
+        let scrolled = window.scrollY; // 已捲動高度
+        if(scrolled > scrollable * 0.7 && flag === true){
+            if(nextPage != null){
+                flag = false;
+                let keyword = document.getElementsByName("keyword")[0].value;
+                models.getAttractionData(nextPage, keyword).then(() => {
+                    views.renderData();
+                });
             }
             else{
-                // console.log(nextPage);
-                getAttractionData(nextPage, keyword.value);
-                flag = false;
+                views.renderFinishMsg();
             }
-    }
-});
-
-btn.addEventListener("click", () => {
-    finish.textContent = "";
-    if(keyword.value != ""){
-        while(ul.firstChild) {
-            ul.removeChild(ul.firstChild);
         }
-        getAttractionData(0, keyword.value);
-    }
-});
-
-keyword.addEventListener("keydown", (e) => {
-    if(e.keyCode === 13) {
-        e.preventDefault();
-        finish.textContent = "";
-        if(keyword.value != ""){
-            while(ul.firstChild) {
-                ul.removeChild(ul.firstChild);
+    },
+    click: function(){
+        let keyword = document.getElementsByName("keyword")[0].value;
+        if(keyword != ""){
+            const list = document.getElementById("attractions");
+            list.innerHTML = "" // 清空景點列表
+            views.removeFinishMsg(); // 清空結束訊息
+            models.getAttractionData(0, keyword).then(() => {
+                views.renderData();
+            });
+        }
+    },
+    keydown: function(e){
+        if(e.key === "Enter"){
+            e.preventDefault();
+            let keyword = document.getElementsByName("keyword")[0].value;
+            if(keyword != ""){
+                const list = document.getElementById("attractions");
+                list.innerHTML = "" // 清空景點列表
+                views.removeFinishMsg(); // 清空結束訊息
+                models.getAttractionData(0, keyword).then(() => {
+                    views.renderData();
+                });
             }
-            getAttractionData(0, keyword.value);
         }
     }
-});
+};
+
+window.onload = () => controllers.init();
+window.addEventListener("scroll", () => controllers.scroll());
+document.getElementById("btn").addEventListener("click", () => controllers.click());
+document.getElementsByName("keyword")[0].addEventListener("keydown", (e) => controllers.keydown(e));

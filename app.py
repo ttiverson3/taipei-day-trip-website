@@ -10,6 +10,7 @@ app.config.from_object("config")
 app.config["DEBUG"]
 app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config['JSON_SORT_KEYS'] = False
 
 # Pages
 @app.route("/")
