@@ -1,6 +1,6 @@
 let models = {
     data: null,
-    nextPage: 0,
+    nextPage: null,
     keyword: "",
     getAttractionData: function(page, keyword = ""){
         let url = `/api/attractions?page=${page}&keyword=${keyword}`;
@@ -9,7 +9,6 @@ let models = {
         }).then((result) => {
             this.data = result;
             this.nextPage = result.nextPage;
-            console.log(models.nextPage)
         }).catch(error => console.log(error));
     }
 };
@@ -101,6 +100,7 @@ let controllers = {
                 });
             }
             else{
+                controllers.flag = false;
                 views.renderFinishMsg();
             }
         }
