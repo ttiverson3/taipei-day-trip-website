@@ -1,15 +1,14 @@
-let flag = false; // 紀錄 API 要求是否已完成
-let nextPage; // 紀錄已載入頁數
-
 let models = {
     data: null,
+    nextPage: null,
+    keyword: "",
     getAttractionData: function(page, keyword = ""){
         let url = `/api/attractions?page=${page}&keyword=${keyword}`;
         return fetch(url).then((response) => {
             return response.json();
         }).then((result) => {
             this.data = result;
-            flag = true; // 要求已完成
+            this.nextPage = result.nextPage;
         }).catch(error => console.log(error));
     }
 };
@@ -17,8 +16,6 @@ let models = {
 let views = {
     renderData: function(){
         if(!models.data.error){
-            nextPage = models.data.nextPage;
-            console.log(nextPage);
             let attractionData = models.data.data;
             let fragment = document.createDocumentFragment();
             attractionData.forEach(data => {
@@ -44,6 +41,7 @@ let views = {
             });
             const list = document.getElementById("attractions");
             list.appendChild(fragment);
+            controllers.flag = true;
         }
         else{
             views.renderFinishMsg();
@@ -85,6 +83,7 @@ let views = {
 };
 
 let controllers = {
+    flag: false,
     init: function(){
         models.getAttractionData(0).then(() => {
             views.renderData();
@@ -93,26 +92,24 @@ let controllers = {
     scroll: function(){
         let scrollable = document.documentElement.scrollHeight - window.innerHeight; // 可捲動高度
         let scrolled = window.scrollY; // 已捲動高度
-        if(scrolled > scrollable * 0.7 && flag === true){
-            if(nextPage != null){
-                flag = false;
-                let keyword = document.getElementsByName("keyword")[0].value;
-                models.getAttractionData(nextPage, keyword).then(() => {
-                    views.renderData();
-                });
-            }
-            else{
-                views.renderFinishMsg();
-            }
+        if(scrolled > scrollable * 0.7 && controllers.flag && models.nextPage != null){
+            controllers.flag = false;
+            models.getAttractionData(models.nextPage, models.keyword).then(() => {
+                views.renderData();
+            });
         }
+        else{
+            views.renderFinishMsg();
+        }
+        
     },
     click: function(){
-        let keyword = document.getElementsByName("keyword")[0].value;
-        if(keyword != ""){
+        models.keyword = document.getElementsByName("keyword")[0].value;
+        if(models.keyword != ""){
             const list = document.getElementById("attractions");
             list.innerHTML = "" // 清空景點列表
             views.removeFinishMsg(); // 清空結束訊息
-            models.getAttractionData(0, keyword).then(() => {
+            models.getAttractionData(0, models.keyword).then(() => {
                 views.renderData();
             });
         }
@@ -120,12 +117,12 @@ let controllers = {
     keydown: function(e){
         if(e.key === "Enter"){
             e.preventDefault();
-            let keyword = document.getElementsByName("keyword")[0].value;
-            if(keyword != ""){
+            models.keyword = document.getElementsByName("keyword")[0].value;
+            if(models.keyword != ""){
                 const list = document.getElementById("attractions");
                 list.innerHTML = "" // 清空景點列表
                 views.removeFinishMsg(); // 清空結束訊息
-                models.getAttractionData(0, keyword).then(() => {
+                models.getAttractionData(0, models.keyword).then(() => {
                     views.renderData();
                 });
             }
@@ -133,11 +130,13 @@ let controllers = {
     }
 };
 
-window.onload = () => controllers.init();
-window.addEventListener("scroll", () => controllers.scroll());
-document.getElementById("btn").addEventListener("click", () => controllers.click());
-document.getElementsByName("keyword")[0].addEventListener("keydown", (e) => controllers.keydown(e));
-document.getElementById("loginBtn").addEventListener("click", () => views.showModal("open"));
-document.getElementsByClassName("close")[0].addEventListener("click", () => views.showModal("close"));
-document.getElementById("doRegisterBtn").addEventListener("click", () => views.showModalContent("rigister"));
-document.getElementById("doLoginBtn").addEventListener("click", () => views.showModalContent("login"));
+window.onload = () => {
+    controllers.init();
+    window.addEventListener("scroll", () => controllers.scroll());
+    document.getElementById("btn").addEventListener("click", () => controllers.click());
+    document.getElementsByName("keyword")[0].addEventListener("keydown", (e) => controllers.keydown(e));
+    document.getElementById("loginBtn").addEventListener("click", () => views.showModal("open"));
+    document.getElementsByClassName("close")[0].addEventListener("click", () => views.showModal("close"));
+    document.getElementById("doRegisterBtn").addEventListener("click", () => views.showModalContent("rigister"));
+    document.getElementById("doLoginBtn").addEventListener("click", () => views.showModalContent("login"));
+}
