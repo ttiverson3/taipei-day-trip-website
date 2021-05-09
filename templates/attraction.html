@@ -1,9 +1,7 @@
 {% extends "base.html" %}
-
 {%block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/attraction.css') }}">
 {% endblock %}
-
 {% block title %}
 景點相關資訊
 {% endblock %}
@@ -18,7 +16,7 @@
         <div id="right">
             <h2 id="title"></h2>
             <h3 id="category"></h3>
-            <form action="" class="booking">
+            <form method="GET" action="/booking" class="booking">
                 <p class="bold">訂購導覽行程</p>
                 <p>以此景點為中心的一日行程，帶您探索城市角落故事</p>
 
@@ -27,11 +25,11 @@
 
                 <span class="bold">選擇時間：</span>
                 <label>
-                    <input type="radio" id="first" name="day" value="first" checked>
+                    <input type="radio" id="first" name="day" checked>
                     <span>上半天</span>
                 </label>
                 <label>
-                    <input type="radio" id="second" name="day" value="second">
+                    <input type="radio" id="second" name="day">
                     <span>下半天</span>
                 </label>
                 <br><br>

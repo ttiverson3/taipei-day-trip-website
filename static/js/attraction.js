@@ -17,20 +17,24 @@ let views = {
         if(!models.data.error){
             let attraction = models.data.data;
             let attractionImgs = attraction.images;
-            const left = document.getElementById("left");
-            const dots = document.getElementsByClassName("dots")[0];
+            let fragmentSlides = document.createDocumentFragment();
+            let fragmentDots = document.createDocumentFragment();
             attractionImgs.forEach((data, index) => {
                 let img = document.createElement("img");
                 img.src = data;
                 let slides = document.createElement("div");
                 slides.classList.add("mySlides");
                 slides.appendChild(img);
-                left.appendChild(slides);
+                fragmentSlides.appendChild(slides);
                 let dot = document.createElement("span");
                 dot.addEventListener("click", controllers.currentSlide.bind(null, index));
                 dot.classList.add("dot");
-                dots.appendChild(dot);
+                fragmentDots.appendChild(dot);
             });
+            const left = document.getElementById("left");
+            left.appendChild(fragmentSlides);
+            const dots = document.getElementsByClassName("dots")[0];
+            dots.appendChild(fragmentDots);
             const title = document.getElementById("title");
             title.textContent = attraction.name;
             const category = document.getElementById("category");
@@ -50,7 +54,7 @@ let views = {
     showSlides: function(n){
         let slides = Array.from(document.getElementsByClassName("mySlides"));
         let dots = Array.from(document.getElementsByClassName("dot"));
-        if(n > slides.length) slideIndex = 0; // 超過最大 index 跳至第一張
+        if(n > slides.length - 1) slideIndex = 0; // 超過最大 index 跳至第一張
         if(n < 0) slideIndex = slides.length - 1; // 超過最小 index 跳至最後一張
         // 隱藏所有照片
         slides.forEach(data => {

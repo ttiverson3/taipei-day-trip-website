@@ -27,8 +27,11 @@ def thankyou():
 	return render_template("thankyou.html")
 
 # APIs
+# User APIs
 # Attraction APIs
 app.register_blueprint(attraction_api, url_prefix = "/api")
+# Booking APIs
+# Order APIs
 
 
 if __name__ == "__main__":

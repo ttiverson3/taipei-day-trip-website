@@ -17,24 +17,24 @@ let models = {
 let views = {
     renderData: function(){
         if(!models.data.error){
-            const list = document.getElementById("attractions");
             nextPage = models.data.nextPage;
             console.log(nextPage);
             let attractionData = models.data.data;
+            let fragment = document.createDocumentFragment();
             attractionData.forEach(data => {
                 let link = document.createElement("a");
+                link.href = "attraction/" + data.id;
                 let card = document.createElement("li");
                 let image = document.createElement("img");
+                image.src = data.images[0];
                 let name = document.createElement("h2");
+                name.textContent = data.name;
                 let info = document.createElement("div");
                 let mrt = document.createElement("p");
-                let category = document.createElement("p");
-                link.href = "attraction/" + data.id;
-                image.src = data.images[0];
-                name.textContent = data.name;
                 mrt.textContent = data.mrt;
+                let category = document.createElement("p");
                 category.textContent = data.category;
-                list.appendChild(link);
+                fragment.appendChild(link);
                 link.appendChild(card);
                 card.appendChild(image);
                 card.appendChild(name);
@@ -42,6 +42,8 @@ let views = {
                 info.appendChild(mrt);
                 info.appendChild(category);
             });
+            const list = document.getElementById("attractions");
+            list.appendChild(fragment);
         }
         else{
             views.renderFinishMsg();
@@ -55,6 +57,30 @@ let views = {
     removeFinishMsg: function(){
         let msg = document.getElementById("finish");
         msg.textContent = "";
+    },
+    showModal: function(condition){
+        if(condition === "open") document.getElementById("myModal").style.display = "block";
+        if(condition === "close") document.getElementById("myModal").style.display = "none";
+    },
+    showModalContent: function(condition){
+        let loginContent = Array.from(document.getElementsByClassName("login-content"));
+        let registerContent = Array.from(document.getElementsByClassName("register-content"));
+        if(condition === "rigister"){
+            loginContent.forEach(element => {
+                element.style.display = "none";
+            });
+            registerContent.forEach(element => {
+                element.style.display = "block";
+            });
+        }
+        if(condition === "login"){
+            loginContent.forEach(element => {
+                element.style.display = "block";
+            });
+            registerContent.forEach(element => {
+                element.style.display = "none";
+            });
+        }
     }
 };
 
@@ -111,3 +137,7 @@ window.onload = () => controllers.init();
 window.addEventListener("scroll", () => controllers.scroll());
 document.getElementById("btn").addEventListener("click", () => controllers.click());
 document.getElementsByName("keyword")[0].addEventListener("keydown", (e) => controllers.keydown(e));
+document.getElementById("loginBtn").addEventListener("click", () => views.showModal("open"));
+document.getElementsByClassName("close")[0].addEventListener("click", () => views.showModal("close"));
+document.getElementById("doRegisterBtn").addEventListener("click", () => views.showModalContent("rigister"));
+document.getElementById("doLoginBtn").addEventListener("click", () => views.showModalContent("login"));

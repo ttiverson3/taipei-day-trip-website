@@ -12,6 +12,82 @@
         @include pad
             background-position: right -105px bottom, right
             background-size: 80%, cover
+        .modal
+            display: none
+            position: fixed
+            z-index: 2
+            top: 0
+            right: 0
+            padding-top: 100px
+            width: 100%
+            height: 100%
+            background-color: rgba(0,0,0,0.4)
+            .border-top
+                height: 10px
+                background: linear-gradient(270deg, #337788 0%, #66AABB 100%)
+            .modal-content
+                width: 340px
+                background-color: #fff
+                border-radius: 5px
+                overflow: hidden
+                position: relative
+                margin: 0 auto
+                z-index: 2
+                box-shadow: 1px 1px 2px 1px $gray
+                animation-name: animatetop
+                animation-duration: 0.4s
+                @keyframes animatetop 
+                    from 
+                        top: -300px 
+                        opacity: 0
+                    to 
+                        top: 0 
+                        opacity: 1
+                .modal-header
+                    color: #666
+                    margin: 15px 0px
+                    h2
+                        margin: 0 auto
+                        left: 25%
+                    .close
+                        position: absolute
+                        right: 17px
+                        bottom: 5px
+                        font-size: 24px
+                        font-weight: lighter
+                        z-index: 2
+                        &:hover, &:focus
+                            cursor: pointer
+                .modal-body
+                    .login
+                        display: flex
+                        flex-direction: column
+                        align-items: center
+                        input
+                            width: 310px
+                            height: 47px
+                            margin-bottom: 8px
+                            border-radius: 5px
+                            border: 1px solid #CCC
+                            padding: 15px
+                            &:focus
+                                outline: none
+                        button
+                            width: 310px
+                            height: 47px
+                            background: #489
+                            border-radius: 5px
+                            border-color: transparent
+                            color: #fff
+                            cursor: pointer
+                .modal-footer
+                    h3
+                        margin-: 15px
+                        color: #666
+                        text-align: center
+                        font-weight: lighter
+                        font-size: 16px
+                        cursor: pointer
         .welcome
             width: 1200px
             margin: 0 auto

@@ -290,6 +290,7 @@ html, body {
   height: 35px;
   margin-bottom: 8px;
   border-color: transparent;
+  padding: 8px;
 }
 
 #container main .top #right .booking label {
