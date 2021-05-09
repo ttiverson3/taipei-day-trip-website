@@ -1,6 +1,6 @@
 let models = {
     data: null,
-    nextPage: null,
+    nextPage: 0,
     keyword: "",
     getAttractionData: function(page, keyword = ""){
         let url = `/api/attractions?page=${page}&keyword=${keyword}`;
@@ -9,6 +9,7 @@ let models = {
         }).then((result) => {
             this.data = result;
             this.nextPage = result.nextPage;
+            console.log(models.nextPage)
         }).catch(error => console.log(error));
     }
 };
@@ -16,6 +17,7 @@ let models = {
 let views = {
     renderData: function(){
         if(!models.data.error){
+            controllers.flag = true;
             let attractionData = models.data.data;
             let fragment = document.createDocumentFragment();
             attractionData.forEach(data => {
@@ -41,7 +43,6 @@ let views = {
             });
             const list = document.getElementById("attractions");
             list.appendChild(fragment);
-            controllers.flag = true;
         }
         else{
             views.renderFinishMsg();
@@ -92,16 +93,17 @@ let controllers = {
     scroll: function(){
         let scrollable = document.documentElement.scrollHeight - window.innerHeight; // 可捲動高度
         let scrolled = window.scrollY; // 已捲動高度
-        if(scrolled > scrollable * 0.7 && controllers.flag && models.nextPage != null){
-            controllers.flag = false;
-            models.getAttractionData(models.nextPage, models.keyword).then(() => {
-                views.renderData();
-            });
+        if(scrolled > scrollable * 0.7 && controllers.flag){
+            if(models.nextPage != null){
+                controllers.flag = false;
+                models.getAttractionData(models.nextPage, models.keyword).then(() => {
+                    views.renderData();
+                });
+            }
+            else{
+                views.renderFinishMsg();
+            }
         }
-        else{
-            views.renderFinishMsg();
-        }
-        
     },
     click: function(){
         models.keyword = document.getElementsByName("keyword")[0].value;
