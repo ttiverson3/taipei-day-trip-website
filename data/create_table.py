@@ -8,7 +8,7 @@ def create_table():
         host = "localhost",
         user = os.getenv("user"),
         password = os.getenv("password"),
-        database = "taipei",
+        database = "test",
         auth_plugin = "mysql_native_password"
     )
     cursor = mydb.cursor()
@@ -36,6 +36,14 @@ def create_table():
     password VARCHAR(255) NOT NULL,
     UNIQUE (id, email)
     )""")
+    cursor.execute("""create table cookie
+    ( id int not null, 
+    uid varchar(255) not null, 
+    account varchar(255) not null, 
+    expires_time int not null, 
+    primary key(id, uid), 
+    foreign key (id) references user(id));
+    """)
     print("success")
 
 create_table()
