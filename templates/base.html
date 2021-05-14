@@ -37,15 +37,15 @@
                         <form method="post" class="login">
                             <label>
                                 <span id="nameWarning" style="color: red; display: none;">&#9888;</span>
-                                <input id="name" type="text" name="name" class="register-content" placeholder="輸入姓名" style="display: none;" required>
+                                <input id="name" type="text" name="name" class="register-content" placeholder="輸入姓名" style="display: none;" pattern="^[\u4e00-\u9fa5a-zA-Z0-9]{4,12}$" required>
                             </label>
                             <label>
                                 <span id="emailWarning" style="color: red; display: none;">&#9888;</span>
-                                <input id="email" type="email" name="email" placeholder="輸入電子信箱" required>
+                                <input id="email" type="email" name="email" placeholder="輸入電子信箱" pattern="^.+@.*$" required>
                             </label>
                             <label>
                                 <span id="passwordWarning" style="color: red; display: none;">&#9888;</span>
-                                <input id="password" type="password" name="password" placeholder="輸入密碼" required>
+                                <input id="password" type="password" name="password" placeholder="輸入密碼" pattern="[\w\W]{8,}" required>
                             </label>
                             
                             <button id="login" type="submit" class="login-content">登入帳戶</button>

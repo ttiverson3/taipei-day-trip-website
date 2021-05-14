@@ -73,6 +73,30 @@ let modalModels = {
         .then(result => {
             this.data = result;
         }).catch(error => console.log(error));
+    },
+    // 檢查註冊表單資料格式
+    checkInputFormat: function(){
+        let name = document.getElementById("name");
+        let email = document.getElementById("email");
+        let password = document.getElementById("password");
+        if(!password.checkValidity()){
+            console.log("not p")
+            document.getElementById("modalMessage").style.display = "block";
+            document.getElementById("modalMessage").textContent = "密碼由至少 8 個英文、數字、符號組成"
+        }
+        if(!email.checkValidity()){
+            document.getElementById("modalMessage").style.display = "block";
+            document.getElementById("modalMessage").textContent = "請輸入完整電子郵件 (其中必須包含@)"
+        }
+        if(!name.checkValidity()){
+            console.log("not name")
+            document.getElementById("modalMessage").style.display = "block";
+            document.getElementById("modalMessage").textContent = "使用者名稱由 4 - 12 個任意英數字或中文組成"
+        }
+        if(name.checkValidity() && email.checkValidity() && password.checkValidity()){
+            document.getElementById("modalMessage").style.display = "none";
+            return true;
+        }
     }
 }
 
@@ -236,7 +260,9 @@ let modalControllers = {
             modalModels.userLogin(email, password).then(() => {
                 if(modalModels.data.ok){
                     modalViews.closeModal();
-                    window.location.replace("/");
+                    // 登入成功導回當前頁面
+                    let current_url = window.location.pathname;
+                    window.location.replace(current_url);
                 }
                 if(modalModels.data.error){
                     modalViews.showLoginError();
@@ -254,16 +280,18 @@ let modalControllers = {
         }
         else{
             modalViews.removeWarning();
-            modalModels.userRegister(name, email, password).then(() => {
-                if(modalModels.data.ok){
-                    modalViews.showRegisterSuccess();
-                }
-                if(modalModels.data.error){
-                    modalViews.showRegisterError();
-                }
-            });
+            modalModels.checkInputFormat();
+            if(modalModels.checkInputFormat()){
+                modalModels.userRegister(name, email, password).then(() => {
+                    if(modalModels.data.ok){
+                        modalViews.showRegisterSuccess();
+                    }
+                    if(modalModels.data.error){
+                        modalViews.showRegisterError();
+                    }
+                });
+            }
         }
-        
     },
     // 檢查會員登入狀態
     checkUserCondition: function(){
@@ -282,8 +310,7 @@ let modalControllers = {
                 // 登出成功，導回首頁
                 if(modalModels.data.ok){
                     modalControllers.checkUserCondition();
-                    let current_url = window.location.pathname;
-                    window.location.replace(current_url);
+                    window.location.replace("/");
                 }
             });
         }
