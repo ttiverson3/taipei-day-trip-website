@@ -97,10 +97,8 @@ let controllers = {
     }
 }
 
-window.onload = () => {
-    controllers.load();
-    document.getElementsByName("day")[0].addEventListener("click", () => controllers.radioClick("FirstHalfDay"));
-    document.getElementsByName("day")[1].addEventListener("click", () => controllers.radioClick("SecondHalfDay"));
-    document.getElementsByClassName("prev")[0].addEventListener("click", () => controllers.plusSlides(-1));
-    document.getElementsByClassName("next")[0].addEventListener("click", () => controllers.plusSlides(1));
-}
+window.onload = () => controllers.load();
+document.getElementsByName("day")[0].addEventListener("click", () => controllers.radioClick("FirstHalfDay"));
+document.getElementsByName("day")[1].addEventListener("click", () => controllers.radioClick("SecondHalfDay"));
+document.getElementsByClassName("prev")[0].addEventListener("click", () => controllers.plusSlides(-1));
+document.getElementsByClassName("next")[0].addEventListener("click", () => controllers.plusSlides(1));

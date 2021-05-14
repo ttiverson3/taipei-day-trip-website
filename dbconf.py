@@ -32,5 +32,36 @@ class Connect:
             self.cur.close()
             self.cnx.close()
             return self.result
-        except:
+        except Exception as e:
+            print(e, "ERROR in dbconf.Connect.query()")
+            return "MySQL connection error"
+    def insert(self, sql):
+        try:
+            # connect to database
+            self.cnx = self.cnxpool.get_connection()
+            self.cur = self.cnx.cursor(buffered = True)
+            # execute query
+            self.cur.execute(sql)
+            self.cnx.commit()
+            # close database connection
+            self.cur.close()
+            self.cnx.close()
+            return "insert success"
+        except Exception as e:
+            print(e, "ERROR in dbconf.Connect.insert()")
+            return "MySQL connection error"
+    def delete(self, sql):
+        try:
+            # connect to database
+            self.cnx = self.cnxpool.get_connection()
+            self.cur = self.cnx.cursor(buffered = True)
+            # execute query
+            self.cur.execute(sql)
+            self.cnx.commit()
+            # close database connection
+            self.cur.close()
+            self.cnx.close()
+            return "delete success"
+        except Exception as e:
+            print(e, "ERROR in dbconf.Connect.insert()")
             return "MySQL connection error"

@@ -49,7 +49,8 @@ def get_attractions_list(page, keyword):
         else:
             response = make_response(jsonify({"error": True,"message": "景點編號或關鍵字不正確"}), 400)
             return response
-    except:
+    except Exception as e:
+        print(e, "ERROR in model.attraction_data.get_attraction_list()")
         response = make_response(jsonify({"error": True,"message": "伺服器內部錯誤"}), 500)
         return response
 
@@ -67,6 +68,7 @@ def get_attraction(id):
         else:
             response = make_response(jsonify({"error": True,"message": "景點編號不正確"}), 400)
             return response
-    except:
+    except Exception as e:
+        print(e, "ERROR in model.attraction_data.get_attraction()")
         response = make_response(jsonify({"error": True,"message": "伺服器內部錯誤"}), 500)
         return response

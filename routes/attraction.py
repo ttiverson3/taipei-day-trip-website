@@ -12,7 +12,8 @@ def attractions_list():
 		keyword = request.args.get("keyword", "")
 		response = get_attractions_list(page, keyword)
 		return response
-	except:
+	except Exception as e:
+		print(e, "ERROR in routes.attraction.attraction_list()")
 		response = make_response(jsonify({"error": True,"message": "輸入資料格式錯誤"}), 400)
 		return response
 
@@ -22,6 +23,7 @@ def attraction(attractionId):
 		id = int(attractionId)
 		response = get_attraction(id)
 		return response
-	except:
+	except Exception as e:
+		print(e, "ERROR in routes.attraction.attraction()")
 		response = make_response(jsonify({"error": True,"message": "輸入資料格式錯誤"}), 400)
 		return response

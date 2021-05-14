@@ -1,9 +1,11 @@
 let models = {
     data: null,
-    nextPage: null,
+    nextPage: 0,
     keyword: "",
     getAttractionData: function(page, keyword = ""){
-        let url = `/api/attractions?page=${page}&keyword=${keyword}`;
+        let url = "";
+        if(keyword == "") url = `/api/attractions?page=${page}`;
+        else url = `/api/attractions?page=${page}&keyword=${keyword}`;
         return fetch(url).then((response) => {
             return response.json();
         }).then((result) => {
@@ -58,9 +60,12 @@ let views = {
     },
     showModal: function(condition){
         if(condition === "open") document.getElementById("myModal").style.display = "block";
-        if(condition === "close") document.getElementById("myModal").style.display = "none";
+        if(condition === "close") {
+            document.getElementById("myModal").style.display = "none";
+            views.renderModalContent("login");
+        } 
     },
-    showModalContent: function(condition){
+    renderModalContent: function(condition){
         let loginContent = Array.from(document.getElementsByClassName("login-content"));
         let registerContent = Array.from(document.getElementsByClassName("register-content"));
         if(condition === "rigister"){
@@ -132,13 +137,7 @@ let controllers = {
     }
 };
 
-window.onload = () => {
-    controllers.init();
-    window.addEventListener("scroll", () => controllers.scroll());
-    document.getElementById("btn").addEventListener("click", () => controllers.click());
-    document.getElementsByName("keyword")[0].addEventListener("keydown", (e) => controllers.keydown(e));
-    document.getElementById("loginBtn").addEventListener("click", () => views.showModal("open"));
-    document.getElementsByClassName("close")[0].addEventListener("click", () => views.showModal("close"));
-    document.getElementById("doRegisterBtn").addEventListener("click", () => views.showModalContent("rigister"));
-    document.getElementById("doLoginBtn").addEventListener("click", () => views.showModalContent("login"));
-}
+window.onload = () => controllers.init();
+window.addEventListener("scroll", () => controllers.scroll());
+document.getElementById("btn").addEventListener("click", () => controllers.click());
+document.getElementsByName("keyword")[0].addEventListener("keydown", (e) => controllers.keydown(e));
