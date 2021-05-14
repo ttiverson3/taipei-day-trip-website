@@ -29,21 +29,21 @@ def create_table():
     # attr_id INT,
     # FOREIGN KEY(attr_id) REFERENCES attraction(id)
     # )""")
-    cursor.execute("""CREATE TABLE user 
-    (id INT AUTO_INCREMENT PRIMARY KEY, 
-    name VARCHAR(255) NOT NULL, 
-    email VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    UNIQUE (id, email)
-    )""")
-    cursor.execute("""create table cookie
-    ( id int not null, 
-    uid varchar(255) not null, 
-    account varchar(255) not null, 
-    expires_time int not null, 
-    primary key(id, uid), 
-    foreign key (id) references user(id));
-    """)
+    # cursor.execute("""CREATE TABLE user 
+    # (id INT AUTO_INCREMENT PRIMARY KEY, 
+    # name VARCHAR(255) NOT NULL, 
+    # email VARCHAR(255) NOT NULL,
+    # password VARCHAR(255) NOT NULL,
+    # UNIQUE (id, email)
+    # )""")
+    # cursor.execute("""create table cookie
+    # ( id int not null, 
+    # uid varchar(255) not null, 
+    # account varchar(255) not null, 
+    # expires_time int not null, 
+    # primary key(id, uid), 
+    # foreign key (id) references user(id));
+    # """)
     print("success")
 
 create_table()
