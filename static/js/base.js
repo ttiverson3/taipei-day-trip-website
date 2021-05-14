@@ -282,9 +282,11 @@ let modalControllers = {
             if(modalModels.checkInputFormat()){
                 modalModels.userRegister(name, email, password).then(() => {
                     if(modalModels.data.ok){
+                        modalViews.removeModalValues();
                         modalViews.showRegisterSuccess();
                     }
                     if(modalModels.data.error){
+                        modalViews.removeModalValues();
                         modalViews.showRegisterError();
                     }
                 });
