@@ -8,7 +8,7 @@
     <style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');</style>
     {% block css %}
     {% endblock %}
-    <title>{{ title }}</title>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <div id="container">
@@ -17,13 +17,48 @@
             <div>
                 <a href="/"><h1>台北一日遊</h1></a>
                 <ul>
-                    <li>預定行程</li>
-                    <li>登入/註冊</li>
+                    <li id="bookingBtn">預定行程</li>
+                    <li id="loginBtn" style="display: block;">登入/註冊</li>
+                    <li id="logoutBtn" style="display: none;">登出系統</li>
                 </ul>
             </div>
             {% endblock %}
         </header>
         <section>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <div class="border-top"></div>
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+                        <h2 class="login-content">登入會員帳號</h2>
+                        <h2 class="register-content" style="display: none;">註冊會員帳號</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" class="login">
+                            <label>
+                                <span id="nameWarning" style="color: red; display: none;">&#9888;</span>
+                                <input id="name" type="text" name="name" class="register-content" placeholder="輸入姓名" style="display: none;" pattern="^[\u4e00-\u9fa5a-zA-Z0-9]{4,12}$" required>
+                            </label>
+                            <label>
+                                <span id="emailWarning" style="color: red; display: none;">&#9888;</span>
+                                <input id="email" type="email" name="email" placeholder="輸入電子信箱" pattern="^.+@.*$" required>
+                            </label>
+                            <label>
+                                <span id="passwordWarning" style="color: red; display: none;">&#9888;</span>
+                                <input id="password" type="password" name="password" placeholder="輸入密碼" pattern="[\w\W]{8,}" required>
+                            </label>
+                            
+                            <button id="login" type="submit" class="login-content">登入帳戶</button>
+                            <button id="register" type="submit" class="register-content" style="display: none;">註冊新帳戶</button>
+                        </form>
+                        <p id="modalMessage"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <h3 id="doRegisterBtn" class="login-content">還沒有帳戶？點此註冊</h3>
+                        <h3 id="doLoginBtn" class="register-content" style="display: none;">已經有帳戶了？點此登入</h3>
+                    </div>
+                </div>
+            </div>
             {% block section %}{% endblock %}
         </section>
         <main>
@@ -33,8 +68,8 @@
             <p>COPYRIGHT © 2021 台北一日遊</p>
         </footer>
     </div>
+    <script src="{{ url_for('static', filename = 'js/base.js') }}"></script>
     {% block js %}
-    <script src="{{ url_for('static', filename = 'js/all.js') }}"></script>
     {% endblock %}
 </body>
 </html>
