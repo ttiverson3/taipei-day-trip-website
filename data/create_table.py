@@ -8,7 +8,7 @@ def create_table():
         host = "localhost",
         user = os.getenv("user"),
         password = os.getenv("password"),
-        database = "test",
+        database = "taipei",
         auth_plugin = "mysql_native_password"
     )
     cursor = mydb.cursor()
