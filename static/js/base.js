@@ -80,7 +80,6 @@ let modalModels = {
         let email = document.getElementById("email");
         let password = document.getElementById("password");
         if(!password.checkValidity()){
-            console.log("not p")
             document.getElementById("modalMessage").style.display = "block";
             document.getElementById("modalMessage").textContent = "密碼由至少 8 個英文、數字、符號組成"
         }
@@ -89,7 +88,6 @@ let modalModels = {
             document.getElementById("modalMessage").textContent = "請輸入完整電子郵件 (其中必須包含@)"
         }
         if(!name.checkValidity()){
-            console.log("not name")
             document.getElementById("modalMessage").style.display = "block";
             document.getElementById("modalMessage").textContent = "使用者名稱由 4 - 12 個任意英數字或中文組成"
         }

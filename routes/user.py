@@ -9,11 +9,10 @@ user_api = Blueprint("user_api", __name__)
 @user_api.route("/user", methods = ["PATCH"])
 def login():
     try:
-        uid = request.cookies.get("uid")
         email = request.get_json()["email"]
         password = request.get_json()["password"]
         if email and password:
-            response = do_login(uid, email, password)
+            response = do_login(email, password)
             return response
         else:
             response = make_response(jsonify({"error": True, "message": "請輸入帳號及密碼"}), 400)

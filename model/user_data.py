@@ -8,7 +8,7 @@ import time
 db = Connect()
 
 # 登入
-def do_login(uid, email, password):
+def do_login(email, password):
     try:
         password = hashlib.sha256(password.encode('utf-8')).hexdigest()
         sql = f"""
