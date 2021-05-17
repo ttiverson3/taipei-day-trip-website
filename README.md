@@ -3,7 +3,7 @@
 ## Demo
 http://18.116.177.114:3000/
 ## 簡介
-運用前後端分離架構，根據 RESTful API 設計，整合金流服務的電商網站，並透過 Amazon EC2 將網站上線。主要功能為：<br>
+運用前後端分離架構，根據 RESTful API 設計，整合金流服務的電商網站，透過 Amazon EC2 將網站上線。主要功能：<br>
 - User System：會員註冊、登入、登出
 - Order System：景點瀏覽、下單、結帳
 - Infinite Scroll：偵測網頁捲動狀況，自動載入景點
