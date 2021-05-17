@@ -44,9 +44,9 @@ def register():
 @user_api.route("/user", methods = ["DELETE"])
 def logout():
     try:
-        uid = request.cookies.get("uid")
-        if uid:
-            response = do_logout(uid)
+        cookie = request.cookies.get("sessionId")
+        if cookie:
+            response = do_logout(cookie)
             return response
         else:
             response = make_response(jsonify({"error": True, "message": "沒有取得 cookie"}), 400)
@@ -61,12 +61,13 @@ def logout():
 @user_api.route("/user", methods = ["GET"])
 def get_user_info():
     try:
-        uid = request.cookies.get("uid")
-        if uid == None:
+        cookie = request.cookies.get("sessionId")
+        print(cookie)
+        if cookie == None:
             response = make_response(jsonify({"data": None}), 200)
             return response
-        if uid != None:
-            response = get_info_data(uid)
+        if cookie != None:
+            response = get_info_data(cookie)
             return response
     except Exception as e:
         print(e, "ERROR in routes.user.get_user_info()")

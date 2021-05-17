@@ -9,6 +9,10 @@ import os
 import secrets
 import time
 import datetime
+import hashlib
+import secrets
+from datetime import datetime
+
 db = Connect()
 
 app = Flask(__name__)
@@ -21,7 +25,6 @@ with app.app_context():
     # r = do_login("test@gmail.com", "test")
     # print(r)
     # print(int(time.time() + 30 * 60))
-    r = get_info_data("34bbb35ea9dcd89ab1f4650dc57c157c")
-    print(r)
+    print(datetime.now())
     # r = get_info_data("34bbb35ea9dcd89ab1f4650dc57c157c")
     # print(type(r.status_code))
