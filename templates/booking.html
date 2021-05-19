@@ -7,19 +7,65 @@
 {% endblock %}
 
 {% block main %}
-<div class="top">
-
+<div class="top" id="top">
+    <h3 id="welcome-text">您好，<span id="username"></span>，待預訂的行程如下：</h3>
+    <p id="no-booking-message" style="display: none; color: #666;">目前沒有任何待預訂的行程</p>
+    <div class="booking-body">
+        <img id="attraction-img" src="">
+        <div class="booking-content">
+            <h4 id="attraction-title"></h4>
+            <p>日期：<span id="attraction-date"></span></p>
+            <p>時間：<span id="attraction-time"></span></p>
+            <p>費用：<span id="attraction-price"></span></p>
+            <p>地點：<span id="attraction-address"></span></p>
+        </div>
+        <div class="delete-icon" id="delBtn"></div>
+    </div>
 </div>
 <hr>
 <div class="middle">
-
+    <h3>您的聯絡資訊</h3>
+    <form class="user-info">
+        <label>
+            <label for="name">聯絡姓名：</label>
+            <input type="text" name="name" id="booking-name">
+        </label>
+        <label>
+            <label for="email">聯絡信箱：</label>
+            <input type="email" name="email" id="booking-email">
+        </label>
+        <label>
+            <label for="phone">手機號碼：</label>
+            <input type="text" name="phone" id="booking-phone">
+        </label>
+    </form>
+    <p>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</p>
 </div>
 <hr>
 <div class="bottom">
-
+    <h3>信用卡付款資訊</h3>
+    <form class="payment-info">
+        <label>
+            <label for="ccn">卡片號碼：</label>
+            <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="**** **** **** ****">
+        </label>
+        <label>
+            <label for="cce">過期時間：</label>
+            <input id="cce" type="tel" autocomplete="cc-exp" maxlength="5" placeholder="MM / YY">
+        </label>
+        <label>
+            <label for="ccc">驗證密碼：</label>
+            <input id="ccc" type="text" autocomplete="cc-csc" maxlength="3" placeholder="CVV">
+        </label>
+    </form>
 </div>
 <hr>
 <div class="send">
-    
+    <p>總價：<span id="total-price"></span></p>
+    <button type="submit">確認訂購並付款</button>
 </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename = 'js/booking.js') }}"></script>
 {% endblock %}

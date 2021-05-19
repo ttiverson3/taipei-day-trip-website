@@ -323,7 +323,7 @@ html, body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 2;
+  z-index: 1;
 }
 
 #container main .top #left .dots .dot {

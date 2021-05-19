@@ -16,26 +16,26 @@
         <div id="right">
             <h2 id="title"></h2>
             <h3 id="category"></h3>
-            <form method="GET" action="/booking" class="booking">
+            <form class="booking">
                 <p class="bold">訂購導覽行程</p>
                 <p>以此景點為中心的一日行程，帶您探索城市角落故事</p>
 
                 <span class="bold">選擇日期：</span>
-                <input class="date" type="date"><br>
+                <input class="date" type="date" id="date" min="" max="" required><br>
 
                 <span class="bold">選擇時間：</span>
                 <label>
-                    <input type="radio" id="first" name="day" checked>
+                    <input type="radio" name="day" value="morning" checked>
                     <span>上半天</span>
                 </label>
                 <label>
-                    <input type="radio" id="second" name="day">
+                    <input type="radio" name="day" value="afternoon">
                     <span>下半天</span>
                 </label>
                 <br><br>
                 
                 <span class="bold">導覽費用：</span><span id="price">新台幣 2000 元</span><br>
-                <button type="submit">開始預訂行程</button>
+                <button type="submit" id="startBooking">開始預訂行程</button>
             </form>
         </div>
     </div>

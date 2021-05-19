@@ -293,14 +293,17 @@ let modalControllers = {
             }
         }
     },
+    loginStatus: false,
     // 檢查會員登入狀態
     checkUserCondition: function(){
         modalModels.userInfo().then(() => {
             if(modalModels.data.data != null){
                 modalViews.showLogoutBtn();
+                modalControllers.loginStatus = true;
             }
             else{
                 modalViews.showLoginBtn();
+                modalControllers.loginStatus = false;
             }
         });
     },
@@ -313,6 +316,14 @@ let modalControllers = {
                     window.location.replace("/");
                 }
             });
+        }
+    },
+    book: function(){
+        if(modalControllers.loginStatus){
+            window.location.replace("/booking");
+        }
+        else{
+            modalViews.showModal();
         }
     }
 }
@@ -328,3 +339,5 @@ window.addEventListener("load", () => modalControllers.checkUserCondition());
 document.getElementById("login").addEventListener("click", (e) => modalControllers.login(e));
 document.getElementById("register").addEventListener("click", (e) => modalControllers.register(e));
 document.getElementById("logoutBtn").addEventListener("click", () => modalControllers.logout());
+
+document.getElementById("bookingBtn").addEventListener("click", () => modalControllers.book());

@@ -56,9 +56,9 @@ def do_register(name, email, password):
         return response
 
 # 登出
-def do_logout(cookie):
+def do_logout(sessionId):
     try:
-        if cookie:
+        if sessionId:
             response = make_response(jsonify({"ok": True}), 200)
             response.set_cookie(key = "sessionId", value = "", expires = 0)
             return response
@@ -68,10 +68,10 @@ def do_logout(cookie):
         return response
 
 # 取得使用者資料
-def get_info_data(cookie):
+def get_info_data(sessionId):
     try:
-        if cookie:
-            id = cookie
+        if sessionId:
+            id = sessionId
             sql = f"""
                     SELECT name, email
                     FROM user
@@ -81,7 +81,7 @@ def get_info_data(cookie):
             name = result[0][0]
             email = result[0][1]
             data = {
-                "data":{
+                "data": {
                     "id": id,
                     "name": name,
                     "email": email
@@ -90,7 +90,7 @@ def get_info_data(cookie):
             response = make_response(jsonify(data), 200)
             return response
         # cookie 超過期限
-        if cookie == None:
+        if sessionId == None:
             response = make_response(jsonify({"data": None}), 200)
             response.set_cookie(key = "sessionId", value = "", expires = 0)
             return response

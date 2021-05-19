@@ -9,10 +9,113 @@
     main
         max-width: 1200px
         margin: 0 auto
-        padding-top: 30px
         @include pad
             width: 90%
+            line-height: 24px
         @include mobile
             width: 100%
         hr
             border: 1px solid #E8E8E8
+        .top
+            margin: 0 8%
+            margin-bottom: 40px
+            @include pad
+                margin: 0 10px
+            @include mobile
+                margin: 0 10px
+            h3
+                font-size: 19px
+                color: #666
+                margin-bottom: 35px
+            .booking-body
+                display: flex
+                @include mobile
+                    flex-direction: column
+                img
+                    width: 266px
+                    height: 200px
+                    @include mobile
+                        width: 100%
+                        height: 100%
+                .booking-content
+                    margin-left: 22px
+                    @include mobile
+                        margin-left: 0px
+                    h4
+                        color: $blue
+                    p
+                        font-weight: bold
+                        color: $gray
+                        span
+                            font-weight: normal
+                .delete-icon
+                    margin-left: auto
+                    margin-right: 0
+                    width: 30px
+                    height: 30px
+                    background-image: url("/imgs/icon_delete.png")
+                    cursor: pointer
+        .middle
+            margin: 0 8%
+            color: $gray
+            @include pad
+                margin: 0 10px
+            @include mobile
+                margin-left: 10px
+            h3
+                font-weight: bold
+            .user-info
+                display: flex
+                flex-direction: column
+                label
+                    margin-bottom: 15px
+                input
+                    width: 200px
+                    height: 38px
+                    border-radius: 5px
+                    border: 1px solid #E8E8E8
+                    padding: 10px
+                    outline: none
+            p
+                margin-top: 0
+                font-weight: bold
+                margin-bottom: 45px
+        .bottom
+            margin: 0 8%
+            color: $gray
+            margin-top: 44px
+            @include pad
+                margin: 0 10px
+            @include mobile
+                margin-left: 10px
+            h3
+                font-weight: bold
+            .payment-info
+                display: flex
+                flex-direction: column
+                label
+                    margin-bottom: 15px
+                input
+                    width: 200px
+                    height: 38px
+                    border-radius: 5px
+                    border: 1px solid #E8E8E8
+                    padding: 10px
+                    outline: none
+        .send
+            margin: 0 8%
+            display: flex
+            flex-direction: column
+            align-items: flex-end
+            margin-bottom: 62px
+            p
+                color: $gray
+                font-weight: bold
+            button
+                width: 173px
+                height: 36px
+                background-color: $blue
+                color: #fff
+                border-radius: 5px
+                border-color: transparent
+                cursor: pointer
