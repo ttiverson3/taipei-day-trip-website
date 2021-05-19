@@ -86,11 +86,11 @@ let controllers = {
                 views.renderNoBookingData();
             }
             // 有預定資料
-            else if(models.data.data){
+            if(models.data.data){
                 views.renderBookingData();
             }
             // 未登入
-            else{
+            if(models.data.error){
                 window.location.replace("/");
             }
         });
