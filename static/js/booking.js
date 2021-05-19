@@ -41,7 +41,7 @@ let views = {
         let price = booking_data.price;
         let address = booking_data.attraction.address;
         // top
-        document.getElementById("username").textContent = username;
+        document.getElementById("username").textContent = localStorage.getItem("username");
         document.getElementById("attraction-img").src = image;
         document.getElementById("attraction-title").textContent = "台北一日遊：" + attraction;
         document.getElementById("attraction-date").textContent = date;
