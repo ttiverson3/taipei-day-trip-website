@@ -80,16 +80,21 @@ let views = {
 let controllers = {
     load: function(){
         models.getBookingData().then(() => {
-            // 無預定資料
-            if(models.data.data === null){
-                views.renderNoBookingData();
+            if(modalControllers.loginStatus){
+                // 無預定資料
+                if(models.data.data === null){
+                    views.renderNoBookingData();
+                }
+                // 有預定資料
+                if(models.data.data){
+                    views.renderBookingData();
+                }
+                // 未登入
+                if(models.data.error){
+                    window.location.replace("/");
+                }
             }
-            // 有預定資料
-            if(models.data.data){
-                views.renderBookingData();
-            }
-            // 未登入
-            if(models.data.error){
+            else{
                 window.location.replace("/");
             }
         });
