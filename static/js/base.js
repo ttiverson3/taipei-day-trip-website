@@ -301,6 +301,7 @@ let modalControllers = {
                 modalViews.showLogoutBtn();
                 modalControllers.loginStatus = true;
                 localStorage.setItem("username", modalModels.data.data.name);
+                localStorage.setItem("email", modalModels.data.data.email);
             }
             else{
                 modalViews.showLoginBtn();
@@ -314,6 +315,7 @@ let modalControllers = {
                 // 登出成功，導回首頁
                 if(modalModels.data.ok){
                     localStorage.removeItem("username");
+                    localStorage.removeItem("email");
                     modalControllers.checkUserCondition();
                     window.location.replace("/");
                 }

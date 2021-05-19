@@ -55,7 +55,7 @@ let views = {
         document.getElementById("attraction-address").textContent = address;
         // middle
         document.getElementById("booking-name").value = localStorage.getItem("username");
-        document.getElementById("booking-email").value = modalModels.data.data.email;
+        document.getElementById("booking-email").value = localStorage.getItem("email");
         // bottom
         document.getElementById("total-price").textContent = "新台幣 " + price + " 元";
     },
