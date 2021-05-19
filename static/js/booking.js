@@ -33,7 +33,6 @@ let models = {
 
 let views = {
     renderBookingData: function(){
-        let username = modalModels.data.data.name;
         let booking_data = models.data.data;
         let image = booking_data.attraction.image;
         let attraction = booking_data.attraction.name;
