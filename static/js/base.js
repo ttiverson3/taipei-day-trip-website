@@ -313,6 +313,7 @@ let modalControllers = {
             modalModels.userLogout().then(() => {
                 // 登出成功，導回首頁
                 if(modalModels.data.ok){
+                    localStorage.removeItem("username");
                     modalControllers.checkUserCondition();
                     window.location.replace("/");
                 }
