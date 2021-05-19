@@ -55,7 +55,7 @@ let views = {
         document.getElementById("attraction-price").textContent = "新台幣 " + price + " 元";
         document.getElementById("attraction-address").textContent = address;
         // middle
-        document.getElementById("booking-name").value = modalModels.data.data.name;
+        document.getElementById("booking-name").value = localStorage.getItem("username");
         document.getElementById("booking-email").value = modalModels.data.data.email;
         // bottom
         document.getElementById("total-price").textContent = "新台幣 " + price + " 元";
@@ -64,7 +64,7 @@ let views = {
         let top = document.getElementById("top");
         let welcome_text = top.querySelector("#welcome-text");
         let text = welcome_text.textContent.split("，")
-        text[1] = modalModels.data.data.name;
+        text[1] = localStorage.getItem("username");
         welcome_text.textContent = text.join("，");
         let msg = document.getElementById("no-booking-message");
         msg.style.display = "block";
@@ -81,17 +81,15 @@ let views = {
 let controllers = {
     load: function(){
         models.getBookingData().then(() => {
-            // 檢查登入狀態
-            if(modalControllers.loginStatus){
-                // 無預定資料
-                if(models.data.data === null){
-                    views.renderNoBookingData();
-                }
-                // 有預定資料
-                else{
-                    views.renderBookingData();
-                }
+            // 無預定資料
+            if(models.data.data === null){
+                views.renderNoBookingData();
             }
+            // 有預定資料
+            else if(models.data.data){
+                views.renderBookingData();
+            }
+            // 未登入
             else{
                 window.location.replace("/");
             }

@@ -300,6 +300,7 @@ let modalControllers = {
             if(modalModels.data.data != null){
                 modalViews.showLogoutBtn();
                 modalControllers.loginStatus = true;
+                localStorage.setItem("username", modalModels.data.data.name);
             }
             else{
                 modalViews.showLoginBtn();
