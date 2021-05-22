@@ -1,6 +1,8 @@
+from sys import prefix
 from flask import *
 from routes.user import user_api
 from routes.attraction import attraction_api
+from routes.booking import booking_api
 
 app = Flask(
 	__name__,
@@ -33,6 +35,7 @@ app.register_blueprint(user_api, url_prefix = "/api")
 # Attraction APIs
 app.register_blueprint(attraction_api, url_prefix = "/api")
 # Booking APIs
+app.register_blueprint(booking_api, url_prefix = "/api")
 # Order APIs
 
 

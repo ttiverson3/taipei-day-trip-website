@@ -21,7 +21,7 @@ html, body {
   height: 54px;
   width: 100%;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   background-color: #fff;
   top: 0;
 }
@@ -188,6 +188,17 @@ html, body {
   cursor: pointer;
 }
 
+#container main .loader-inner {
+  z-index: 999;
+  position: absoulte;
+  top: 200px;
+  left: 50%;
+}
+
+#container main .loader-inner div {
+  background-color: #489;
+}
+
 #container footer {
   position: absolute;
   bottom: 0;
@@ -229,19 +240,19 @@ html, body {
   }
 }
 
-#container main .top {
+#container main #attraction-content .top {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-#container main .top #left {
+#container main #attraction-content .top #left {
   width: 540px;
   height: 406px;
 }
 
 @media screen and (max-width: 1200px) {
-  #container main .top #left {
+  #container main #attraction-content .top #left {
     width: 100%;
     height: 100%;
     margin: auto auto;
@@ -249,13 +260,13 @@ html, body {
 }
 
 @media screen and (max-width: 600px) {
-  #container main .top #left {
+  #container main #attraction-content .top #left {
     width: 100%;
     height: 100%;
   }
 }
 
-#container main .top #left .mySlides {
+#container main #attraction-content .top #left .mySlides {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
@@ -264,13 +275,13 @@ html, body {
 }
 
 @media screen and (max-width: 1200px) {
-  #container main .top #left .mySlides {
+  #container main #attraction-content .top #left .mySlides {
     width: 100%;
     height: 100%;
   }
 }
 
-#container main .top #left .mySlides img {
+#container main #attraction-content .top #left .mySlides img {
   width: 100%;
   height: 100%;
   border-radius: 5px;
@@ -278,12 +289,12 @@ html, body {
 }
 
 @media screen and (max-width: 600px) {
-  #container main .top #left .mySlides img {
+  #container main #attraction-content .top #left .mySlides img {
     border-radius: 0;
   }
 }
 
-#container main .top #left .prev, #container main .top #left .next {
+#container main #attraction-content .top #left .prev, #container main #attraction-content .top #left .next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -302,31 +313,31 @@ html, body {
   opacity: 0.7;
 }
 
-#container main .top #left .prev:hover, #container main .top #left .next:hover {
+#container main #attraction-content .top #left .prev:hover, #container main #attraction-content .top #left .next:hover {
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
 }
 
-#container main .top #left .prev {
+#container main #attraction-content .top #left .prev {
   padding-left: 10px;
   left: 5px;
 }
 
-#container main .top #left .next {
+#container main #attraction-content .top #left .next {
   right: 5px;
   padding-left: 12px;
 }
 
-#container main .top #left .dots {
+#container main #attraction-content .top #left .dots {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 2;
+  z-index: 1;
 }
 
-#container main .top #left .dots .dot {
+#container main #attraction-content .top #left .dots .dot {
   cursor: pointer;
   height: 12px;
   width: 12px;
@@ -337,23 +348,23 @@ html, body {
   transition: background-color 0.6s ease;
 }
 
-#container main .top #left .dots .dot:hover {
+#container main #attraction-content .top #left .dots .dot:hover {
   background-color: #000;
   border: 1px solid #fff;
 }
 
-#container main .top #left .dots .active {
+#container main #attraction-content .top #left .dots .active {
   background-color: #000;
   border: 1px solid #fff;
 }
 
-#container main .top #right {
+#container main #attraction-content .top #right {
   width: 540px;
   height: 406px;
 }
 
 @media screen and (max-width: 1200px) {
-  #container main .top #right {
+  #container main #attraction-content .top #right {
     width: 100%;
     margin-top: 20px;
     padding: 10px;
@@ -361,24 +372,24 @@ html, body {
 }
 
 @media screen and (max-width: 600px) {
-  #container main .top #right {
+  #container main #attraction-content .top #right {
     width: 100%;
     margin-top: 20px;
     padding: 10px;
   }
 }
 
-#container main .top #right #title {
+#container main #attraction-content .top #right #title {
   color: #666;
   margin: 0 0;
 }
 
-#container main .top #right #category {
+#container main #attraction-content .top #right #category {
   color: #666;
   font-weight: lighter;
 }
 
-#container main .top #right .booking {
+#container main #attraction-content .top #right .booking {
   margin-top: 30px;
   background-color: #E8E8E8;
   color: #666;
@@ -386,15 +397,15 @@ html, body {
   border-radius: 5px;
 }
 
-#container main .top #right .booking .bold {
+#container main #attraction-content .top #right .booking .bold {
   font-weight: bold;
 }
 
-#container main .top #right .booking span {
+#container main #attraction-content .top #right .booking span {
   margin-right: 5px;
 }
 
-#container main .top #right .booking .date {
+#container main #attraction-content .top #right .booking .date {
   width: 193px;
   height: 35px;
   margin-bottom: 8px;
@@ -402,11 +413,11 @@ html, body {
   padding: 8px;
 }
 
-#container main .top #right .booking label {
+#container main #attraction-content .top #right .booking label {
   margin-right: 5px;
 }
 
-#container main .top #right .booking label input[type="radio"] {
+#container main #attraction-content .top #right .booking label input[type="radio"] {
   top: 0;
   left: 0;
   width: 100%;
@@ -418,12 +429,12 @@ html, body {
   position: absolute;
 }
 
-#container main .top #right .booking label input[type="radio"]:checked + ::before {
+#container main #attraction-content .top #right .booking label input[type="radio"]:checked + ::before {
   background: #489;
   border: 2px solid #fff;
 }
 
-#container main .top #right .booking label ::before {
+#container main #attraction-content .top #right .booking label ::before {
   content: "";
   display: inline-block;
   vertical-align: bottom;
@@ -435,7 +446,7 @@ html, body {
   margin-right: 3px;
 }
 
-#container main .top #right .booking button {
+#container main #attraction-content .top #right .booking button {
   width: 154px;
   height: 36px;
   background-color: #489;
@@ -448,13 +459,13 @@ html, body {
   cursor: pointer;
 }
 
-#container main hr {
+#container main #attraction-content hr {
   border: 1px solid #E8E8E8;
   margin-top: 30px;
   margin-bottom: 50px;
 }
 
-#container main .bottom {
+#container main #attraction-content .bottom {
   max-width: 100%;
   color: #666;
   line-height: 26px;
@@ -462,24 +473,24 @@ html, body {
 }
 
 @media screen and (max-width: 1200px) {
-  #container main .bottom {
+  #container main #attraction-content .bottom {
     height: 100%;
     padding: 20px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  #container main .bottom {
+  #container main #attraction-content .bottom {
     height: 100%;
     padding: 20px;
   }
 }
 
-#container main .bottom #desc {
+#container main #attraction-content .bottom #desc {
   margin-bottom: 20px;
 }
 
-#container main .bottom p {
+#container main #attraction-content .bottom p {
   font-weight: bold;
   margin-bottom: 5px;
 }

@@ -21,7 +21,7 @@ html, body {
   height: 54px;
   width: 100%;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   background-color: #fff;
   top: 0;
 }
@@ -188,6 +188,17 @@ html, body {
   cursor: pointer;
 }
 
+#container main .loader-inner {
+  z-index: 999;
+  position: absoulte;
+  top: 200px;
+  left: 50%;
+}
+
+#container main .loader-inner div {
+  background-color: #489;
+}
+
 #container footer {
   position: absolute;
   bottom: 0;
@@ -213,12 +224,12 @@ html, body {
 #container main {
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 30px;
 }
 
 @media screen and (max-width: 1200px) {
   #container main {
     width: 90%;
+    line-height: 24px;
   }
 }
 
@@ -230,4 +241,189 @@ html, body {
 
 #container main hr {
   border: 1px solid #E8E8E8;
+}
+
+#container main #booking-body .top {
+  margin: 0 8%;
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 1200px) {
+  #container main #booking-body .top {
+    margin: 0 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #container main #booking-body .top {
+    margin: 0 10px;
+  }
+}
+
+#container main #booking-body .top h3 {
+  font-size: 19px;
+  color: #666;
+  margin-bottom: 35px;
+}
+
+#container main #booking-body .top .booking-body {
+  display: flex;
+}
+
+@media screen and (max-width: 600px) {
+  #container main #booking-body .top .booking-body {
+    flex-direction: column;
+  }
+}
+
+#container main #booking-body .top .booking-body img {
+  width: 266px;
+  height: 200px;
+}
+
+@media screen and (max-width: 600px) {
+  #container main #booking-body .top .booking-body img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#container main #booking-body .top .booking-body .booking-content {
+  margin-left: 22px;
+}
+
+@media screen and (max-width: 600px) {
+  #container main #booking-body .top .booking-body .booking-content {
+    margin-left: 0px;
+  }
+}
+
+#container main #booking-body .top .booking-body .booking-content h4 {
+  color: #489;
+}
+
+#container main #booking-body .top .booking-body .booking-content p {
+  font-weight: bold;
+  color: #757575;
+}
+
+#container main #booking-body .top .booking-body .booking-content p span {
+  font-weight: normal;
+}
+
+#container main #booking-body .top .booking-body .delete-icon {
+  margin-left: auto;
+  margin-right: 0;
+  width: 30px;
+  height: 30px;
+  background-image: url("/imgs/icon_delete.png");
+  cursor: pointer;
+}
+
+#container main #booking-body .middle {
+  margin: 0 8%;
+  color: #757575;
+}
+
+@media screen and (max-width: 1200px) {
+  #container main #booking-body .middle {
+    margin: 0 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #container main #booking-body .middle {
+    margin-left: 10px;
+  }
+}
+
+#container main #booking-body .middle h3 {
+  font-weight: bold;
+}
+
+#container main #booking-body .middle .user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+#container main #booking-body .middle .user-info label {
+  margin-bottom: 15px;
+}
+
+#container main #booking-body .middle .user-info input {
+  width: 200px;
+  height: 38px;
+  border-radius: 5px;
+  border: 1px solid #E8E8E8;
+  padding: 10px;
+  outline: none;
+}
+
+#container main #booking-body .middle p {
+  margin-top: 0;
+  font-weight: bold;
+  margin-bottom: 45px;
+}
+
+#container main #booking-body .bottom {
+  margin: 0 8%;
+  color: #757575;
+  margin-top: 44px;
+}
+
+@media screen and (max-width: 1200px) {
+  #container main #booking-body .bottom {
+    margin: 0 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #container main #booking-body .bottom {
+    margin-left: 10px;
+  }
+}
+
+#container main #booking-body .bottom h3 {
+  font-weight: bold;
+}
+
+#container main #booking-body .bottom .payment-info {
+  display: flex;
+  flex-direction: column;
+}
+
+#container main #booking-body .bottom .payment-info label {
+  margin-bottom: 15px;
+}
+
+#container main #booking-body .bottom .payment-info input {
+  width: 200px;
+  height: 38px;
+  border-radius: 5px;
+  border: 1px solid #E8E8E8;
+  padding: 10px;
+  outline: none;
+}
+
+#container main #booking-body .send {
+  margin: 0 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 62px;
+}
+
+#container main #booking-body .send p {
+  color: #757575;
+  font-weight: bold;
+}
+
+#container main #booking-body .send button {
+  width: 173px;
+  height: 36px;
+  background-color: #489;
+  color: #fff;
+  border-radius: 5px;
+  border-color: transparent;
+  cursor: pointer;
 }

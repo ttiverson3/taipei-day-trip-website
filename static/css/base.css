@@ -21,7 +21,7 @@ html, body {
   height: 54px;
   width: 100%;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   background-color: #fff;
   top: 0;
 }
@@ -186,6 +186,17 @@ html, body {
   font-weight: lighter;
   font-size: 16px;
   cursor: pointer;
+}
+
+#container main .loader-inner {
+  z-index: 999;
+  position: absoulte;
+  top: 200px;
+  left: 50%;
+}
+
+#container main .loader-inner div {
+  background-color: #489;
 }
 
 #container footer {

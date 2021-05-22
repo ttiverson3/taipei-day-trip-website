@@ -30,20 +30,22 @@ def create_table():
     # FOREIGN KEY(attr_id) REFERENCES attraction(id)
     # )""")
     # cursor.execute("""CREATE TABLE user 
-    # (id INT AUTO_INCREMENT PRIMARY KEY, 
+    # (id VARCHAR(255) AUTO_INCREMENT PRIMARY KEY, 
     # name VARCHAR(255) NOT NULL, 
-    # email VARCHAR(255) NOT NULL,
+    # email VARCHAR(255) NOT NULL UNIQUE,
     # password VARCHAR(255) NOT NULL,
-    # UNIQUE (id, email)
     # )""")
-    # cursor.execute("""create table cookie
-    # ( id int not null, 
-    # uid varchar(255) not null, 
-    # account varchar(255) not null, 
-    # expires_time int not null, 
-    # primary key(id, uid), 
-    # foreign key (id) references user(id));
-    # """)
+    cursor.execute("""CREATE TABLE booking 
+    (
+    attraction_id INT NOT NULL, 
+    date VARCHAR(255) NOT NULL,
+    time VARCHAR(255) NOT NULL,
+    price INT NOT NULL,
+    uid VARCHAR(255) NOT NULL UNIQUE,
+    PRIMARY KEY(attraction_id, uid),
+    FOREIGN KEY(attraction_id) REFERENCES attraction(id),
+    FOREIGN KEY(uid) REFERENCES user(id)
+    )""")
     print("success")
 
 create_table()

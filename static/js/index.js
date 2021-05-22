@@ -44,6 +44,10 @@ let views = {
             });
             const list = document.getElementById("attractions");
             list.appendChild(fragment);
+
+            const loader = document.getElementsByClassName("loader-inner")[0]
+            loader.style.display = "none";
+            list.style.display = "flex";
         }
         else{
             views.renderFinishMsg();

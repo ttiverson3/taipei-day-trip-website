@@ -169,11 +169,13 @@ let modalViews = {
     showLogoutBtn: function(){
         document.getElementById("loginBtn").style.display = "none";
         document.getElementById("logoutBtn").style.display = "block";
+        nav.style.display = "flex";
     },
     // 未登入狀態：顯示 login 按鈕； 隱藏 logout 按鈕
     showLoginBtn: function(){
         document.getElementById("loginBtn").style.display = "block";
         document.getElementById("logoutBtn").style.display = "none";
+        nav.style.display = "flex";
     },
     // 登入失敗：顯示錯誤訊息
     showLoginError: function(){
@@ -293,26 +295,39 @@ let modalControllers = {
             }
         }
     },
+    loginStatus: false,
     // 檢查會員登入狀態
     checkUserCondition: function(){
         modalModels.userInfo().then(() => {
             if(modalModels.data.data != null){
                 modalViews.showLogoutBtn();
+                modalControllers.loginStatus = true;
+                localStorage.setItem("username", modalModels.data.data.name);
+                localStorage.setItem("email", modalModels.data.data.email);
             }
             else{
                 modalViews.showLoginBtn();
+                modalControllers.loginStatus = false;
             }
         });
     },
     logout: function(){
-        if(true){
             modalModels.userLogout().then(() => {
                 // 登出成功，導回首頁
                 if(modalModels.data.ok){
+                    localStorage.removeItem("username");
+                    localStorage.removeItem("email");
                     modalControllers.checkUserCondition();
                     window.location.replace("/");
                 }
             });
+    },
+    book: function(){
+        if(modalControllers.loginStatus){
+            window.location.replace("/booking");
+        }
+        else{
+            modalViews.showModal();
         }
     }
 }
@@ -328,3 +343,5 @@ window.addEventListener("load", () => modalControllers.checkUserCondition());
 document.getElementById("login").addEventListener("click", (e) => modalControllers.login(e));
 document.getElementById("register").addEventListener("click", (e) => modalControllers.register(e));
 document.getElementById("logoutBtn").addEventListener("click", () => modalControllers.logout());
+
+document.getElementById("bookingBtn").addEventListener("click", () => modalControllers.book());
