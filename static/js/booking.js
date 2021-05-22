@@ -80,7 +80,6 @@ let views = {
 let controllers = {
     load: function(){
         models.getBookingData().then(() => {
-            if(modalControllers.loginStatus){
                 // 無預定資料
                 if(models.data.data === null){
                     views.renderNoBookingData();
@@ -93,10 +92,6 @@ let controllers = {
                 if(models.data.error){
                     window.location.replace("/");
                 }
-            }
-            else{
-                window.location.replace("/");
-            }
         });
     },
     removeBooking: function(){
