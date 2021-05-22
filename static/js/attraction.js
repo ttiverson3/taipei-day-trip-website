@@ -42,6 +42,19 @@ let models = {
         .then(result => {
             this.data = result;
         }).catch((error) => console.log(error));
+    },
+    removeBookingData: function(){
+        let url = "/api/booking";
+        let options = {
+            method: "DELETE",
+        }
+        return fetch(url, options)
+        .then(response => {
+            return response.json();
+        })
+        .then(result => {
+            this.data = result;
+        })
     }
 }
 
@@ -151,7 +164,13 @@ let controllers = {
                         window.location.href = "/booking";
                     }
                     if(models.status === 400){
-                        alert("已有預定行程，請至預定行程頁面查看");
+                        models.removeBookingData().then(() => {
+                            models.sendBookingData().then(() => {
+                                if(models.data.ok){
+                                    window.location.href = "/booking";
+                                }
+                            });
+                        });
                     }
                     if(models.status === 403){
                         modalViews.showModal();
