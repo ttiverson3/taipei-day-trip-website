@@ -47,6 +47,8 @@ let views = {
 
             const loader = document.getElementsByClassName("loader-inner")[0]
             loader.style.display = "none";
+            const section = document.getElementsByTagName("section")[0]
+            section.style.display = "block";
             list.style.display = "flex";
         }
         else{
