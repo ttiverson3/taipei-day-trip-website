@@ -169,11 +169,13 @@ let modalViews = {
     showLogoutBtn: function(){
         document.getElementById("loginBtn").style.display = "none";
         document.getElementById("logoutBtn").style.display = "block";
+        nav.style.display = "flex";
     },
     // 未登入狀態：顯示 login 按鈕； 隱藏 logout 按鈕
     showLoginBtn: function(){
         document.getElementById("loginBtn").style.display = "block";
         document.getElementById("logoutBtn").style.display = "none";
+        nav.style.display = "flex";
     },
     // 登入失敗：顯示錯誤訊息
     showLoginError: function(){
@@ -310,7 +312,6 @@ let modalControllers = {
         });
     },
     logout: function(){
-        if(true){
             modalModels.userLogout().then(() => {
                 // 登出成功，導回首頁
                 if(modalModels.data.ok){
@@ -320,7 +321,6 @@ let modalControllers = {
                     window.location.replace("/");
                 }
             });
-        }
     },
     book: function(){
         if(modalControllers.loginStatus){

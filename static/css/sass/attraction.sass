@@ -15,170 +15,171 @@
         @include mobile
             width: 100%
             padding-top: 0
-        .top
-            display: flex
-            justify-content: space-around
-            flex-wrap: wrap
-            #left
-                width: 540px
-                height: 406px
-                @include pad
-                    width: 100%
-                    height: 100%
-                    margin: auto auto
-                @include mobile
-                    width: 100%
-                    height: 100%
-                .mySlides
-                    visibility: hidden
-                    opacity: 0
-                    transition: visibility 0s, opacity 0.5s linear
-                    width: 100%
-                    height: 100%
+        #attraction-content
+            .top
+                display: flex
+                justify-content: space-around
+                flex-wrap: wrap
+                #left
+                    width: 540px
+                    height: 406px
                     @include pad
                         width: 100%
                         height: 100%
-                    img
+                        margin: auto auto
+                    @include mobile
                         width: 100%
                         height: 100%
-                        border-radius: 5px
-                        object-fit: cover
-                        @include mobile
-                            border-radius: 0
-                .prev, .next
-                    cursor: pointer
-                    position: absolute
-                    top: 50%
-                    width: 36px
-                    height: 36px
-                    margin-top: -22px
-                    padding: 2px
-                    color: #666
-                    font-weight: lighter
-                    font-size: 26px
-                    transition: 0.6s ease
-                    border-radius: 50%
-                    user-select: none // text 不能反白
-                    z-index: 1
-                    background-color: #eee
-                    opacity: 0.7
-                    &:hover
-                        background-color: rgba(0,0,0,0.8)
-                        color: #fff
-                .prev
-                    padding-left: 10px
-                    left: 5px
-                .next
-                    right: 5px
-                    padding-left: 12px
-                .dots
-                    position: absolute
-                    bottom: 0
-                    left: 50%
-                    transform: translate(-50%, -50%)
-                    text-align: center
-                    z-index: 1
-                    .dot
-                        cursor: pointer
-                        height: 12px
-                        width: 12px
-                        margin: 0px 4px
-                        background-color: #eee
-                        border-radius: 50%
-                        display: inline-block
-                        transition: background-color 0.6s ease
-                        &:hover
-                            background-color: #000
-                            border: 1px solid #fff
-                    .active
-                        background-color: #000
-                        border: 1px solid #fff
-            #right
-                width: 540px
-                height: 406px
-                @include pad
-                    width: 100%
-                    margin-top: 20px
-                    padding: 10px
-                @include mobile
-                    width: 100%
-                    margin-top: 20px
-                    padding: 10px
-                #title
-                    color: #666
-                    margin: 0 0
-                #category
-                    color: #666
-                    font-weight: lighter
-                .booking
-                    margin-top: 30px
-                    background-color: #E8E8E8
-                    color: #666
-                    padding: 5px 20px
-                    border-radius: 5px
-                    .bold
-                        font-weight: bold
-                    span
-                        margin-right: 5px
-                    .date
-                        width: 193px
-                        height: 35px
-                        margin-bottom: 8px
-                        border-color: transparent
-                        padding: 8px
-                    label
-                        margin-right: 5px
-                        input[type="radio"]
-                            top: 0
-                            left: 0
+                    .mySlides
+                        visibility: hidden
+                        opacity: 0
+                        transition: visibility 0s, opacity 0.5s linear
+                        width: 100%
+                        height: 100%
+                        @include pad
                             width: 100%
                             height: 100%
-                            margin: 0
-                            opacity: 0
-                            padding: 0
-                            z-index: 1
-                            position: absolute
-                            &:checked + ::before
-                                background: $blue
-                                border: 2px solid #fff
-                        ::before
-                            content: ""
-                            display: inline-block
-                            vertical-align: bottom
-                            width: 1rem
-                            height: 1rem
-                            border-radius: 50%
-                            background-color: #fff
-                            border: 2px solid #fff
-                            margin-right: 3px
-                    button
-                        width: 154px
-                        height: 36px
-                        background-color: #489
-                        color: #fff
-                        padding: 5px
-                        border-color: transparent
-                        border-radius: 3px
-                        margin-top: 40px
-                        margin-bottom: 20px
+                        img
+                            width: 100%
+                            height: 100%
+                            border-radius: 5px
+                            object-fit: cover
+                            @include mobile
+                                border-radius: 0
+                    .prev, .next
                         cursor: pointer
-        hr
-            border: 1px solid #E8E8E8
-            margin-top: 30px
-            margin-bottom: 50px
-        .bottom
-            max-width: 100%
-            color: #666
-            line-height: 26px
-            margin-bottom: 50px
-            @include pad
-                height: 100%
-                padding: 20px
-            @include mobile
-                height: 100%
-                padding: 20px
-            #desc
-                margin-bottom: 20px
-            p
-                font-weight: bold
-                margin-bottom: 5px
+                        position: absolute
+                        top: 50%
+                        width: 36px
+                        height: 36px
+                        margin-top: -22px
+                        padding: 2px
+                        color: #666
+                        font-weight: lighter
+                        font-size: 26px
+                        transition: 0.6s ease
+                        border-radius: 50%
+                        user-select: none // text 不能反白
+                        z-index: 1
+                        background-color: #eee
+                        opacity: 0.7
+                        &:hover
+                            background-color: rgba(0,0,0,0.8)
+                            color: #fff
+                    .prev
+                        padding-left: 10px
+                        left: 5px
+                    .next
+                        right: 5px
+                        padding-left: 12px
+                    .dots
+                        position: absolute
+                        bottom: 0
+                        left: 50%
+                        transform: translate(-50%, -50%)
+                        text-align: center
+                        z-index: 1
+                        .dot
+                            cursor: pointer
+                            height: 12px
+                            width: 12px
+                            margin: 0px 4px
+                            background-color: #eee
+                            border-radius: 50%
+                            display: inline-block
+                            transition: background-color 0.6s ease
+                            &:hover
+                                background-color: #000
+                                border: 1px solid #fff
+                        .active
+                            background-color: #000
+                            border: 1px solid #fff
+                #right
+                    width: 540px
+                    height: 406px
+                    @include pad
+                        width: 100%
+                        margin-top: 20px
+                        padding: 10px
+                    @include mobile
+                        width: 100%
+                        margin-top: 20px
+                        padding: 10px
+                    #title
+                        color: #666
+                        margin: 0 0
+                    #category
+                        color: #666
+                        font-weight: lighter
+                    .booking
+                        margin-top: 30px
+                        background-color: #E8E8E8
+                        color: #666
+                        padding: 5px 20px
+                        border-radius: 5px
+                        .bold
+                            font-weight: bold
+                        span
+                            margin-right: 5px
+                        .date
+                            width: 193px
+                            height: 35px
+                            margin-bottom: 8px
+                            border-color: transparent
+                            padding: 8px
+                        label
+                            margin-right: 5px
+                            input[type="radio"]
+                                top: 0
+                                left: 0
+                                width: 100%
+                                height: 100%
+                                margin: 0
+                                opacity: 0
+                                padding: 0
+                                z-index: 1
+                                position: absolute
+                                &:checked + ::before
+                                    background: $blue
+                                    border: 2px solid #fff
+                            ::before
+                                content: ""
+                                display: inline-block
+                                vertical-align: bottom
+                                width: 1rem
+                                height: 1rem
+                                border-radius: 50%
+                                background-color: #fff
+                                border: 2px solid #fff
+                                margin-right: 3px
+                        button
+                            width: 154px
+                            height: 36px
+                            background-color: #489
+                            color: #fff
+                            padding: 5px
+                            border-color: transparent
+                            border-radius: 3px
+                            margin-top: 40px
+                            margin-bottom: 20px
+                            cursor: pointer
+            hr
+                border: 1px solid #E8E8E8
+                margin-top: 30px
+                margin-bottom: 50px
+            .bottom
+                max-width: 100%
+                color: #666
+                line-height: 26px
+                margin-bottom: 50px
+                @include pad
+                    height: 100%
+                    padding: 20px
+                @include mobile
+                    height: 100%
+                    padding: 20px
+                #desc
+                    margin-bottom: 20px
+                p
+                    font-weight: bold
+                    margin-bottom: 5px

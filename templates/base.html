@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.2/loaders.min.css">
     {% block css %}
     {% endblock %}
     <title>{% block title %}{% endblock %}</title>
@@ -16,7 +17,7 @@
             {% block header %}
             <div>
                 <a href="/"><h1>台北一日遊</h1></a>
-                <ul>
+                <ul id="nav" style="display: none;">
                     <li id="bookingBtn">預定行程</li>
                     <li id="loginBtn" style="display: block;">登入/註冊</li>
                     <li id="logoutBtn" style="display: none;">登出系統</li>
@@ -62,12 +63,18 @@
             {% block section %}{% endblock %}
         </section>
         <main>
+            <div class="loader-inner ball-scale-multiple">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
             {% block main %}{% endblock %}
         </main>
         <footer>
             <p>COPYRIGHT © 2021 台北一日遊</p>
         </footer>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.2/loaders.css.min.js"></script>
     <script src="{{ url_for('static', filename = 'js/base.js') }}"></script>
     {% block js %}
     {% endblock %}

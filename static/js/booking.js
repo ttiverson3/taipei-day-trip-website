@@ -49,7 +49,7 @@ let views = {
             document.getElementById("attraction-time").textContent = "早上 9 點到下午 4 點";
         }
         else {
-            document.getElementById("attraction-time").textContent = "下午 5 點到晚上 10 點";
+            document.getElementById("attraction-time").textContent = "下午 2 點到晚上 9 點";
         }
         document.getElementById("attraction-price").textContent = "新台幣 " + price + " 元";
         document.getElementById("attraction-address").textContent = address;
@@ -58,21 +58,28 @@ let views = {
         document.getElementById("booking-email").value = localStorage.getItem("email");
         // bottom
         document.getElementById("total-price").textContent = "新台幣 " + price + " 元";
+        
+        const loader = document.getElementsByClassName("loader-inner")[0]
+        loader.style.display = "none";
+        let bookingBody = document.getElementById("booking-body");
+        bookingBody.style.display = "block";
     },
     renderNoBookingData: function(){
-        let top = document.getElementById("top");
-        let welcome_text = top.querySelector("#welcome-text");
+        let bookingBody = document.getElementById("booking-body");
+        let welcome_text = bookingBody.querySelector("#welcome-text");
         let text = welcome_text.textContent.split("，")
         text[1] = localStorage.getItem("username");
         welcome_text.textContent = text.join("，");
+        welcome_text.style.color = "#666";
         let msg = document.getElementById("no-booking-message");
         msg.style.display = "block";
-        top.innerHTML = "";
-        top.appendChild(welcome_text);
-        top.appendChild(msg);
+        bookingBody.innerHTML = "";
+        bookingBody.appendChild(welcome_text);
+        bookingBody.appendChild(msg);
         let main = document.getElementsByTagName("main")[0];
         main.innerHTML = "";
-        main.appendChild(top);
+        main.appendChild(bookingBody);
+        bookingBody.style.display = "block";
     }
 }
 

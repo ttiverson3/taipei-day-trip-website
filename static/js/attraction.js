@@ -92,9 +92,20 @@ let views = {
             const transport = document.getElementById("transport");
             transport.textContent = attraction.transport;
             views.showSlides(controllers.slideIndex);
+
+            const loader = document.getElementsByClassName("loader-inner")[0]
+            loader.style.display = "none";
+            const attractionContent = document.getElementById("attraction-content")
+            attractionContent.style.display = "block";
         }
         else{
-            document.body.innerHTML = "Not Found";
+            const attractionContent = document.getElementById("attraction-content")
+            attractionContent.style.display = "block";
+            attractionContent.style.textAlign = "center";
+            attractionContent.style.color = "#666";
+            attractionContent.textContent = "查無該景點";
+            const loader = document.getElementsByClassName("loader-inner")[0]
+            loader.style.display = "none";
         }
     },
     showSlides: function(n){
