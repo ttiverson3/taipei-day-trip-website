@@ -1,9 +1,10 @@
-const orderNumber = localStorage.getItem("number")
+const urlParams = new URLSearchParams(window.location.search);
+const number = urlParams.get("number");
 
 let models = {
     data: null,
     getOrderData: function(){
-        let url = `api/order/${orderNumber}`
+        let url = `api/order/${number}`
         options = {
             method: "GET"
         }

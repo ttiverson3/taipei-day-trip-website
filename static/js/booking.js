@@ -195,8 +195,8 @@ let controllers = {
                         // 刪除預定資料
                         models.removeBookingData().then(() => {
                             if(models.data.ok){
-                                localStorage.setItem("number", result.data.number);
-                                window.location.replace("/thankyou");
+                                // localStorage.setItem("number", result.data.number);
+                                window.location.replace(`/thankyou?number=${result.data.number}`);
                                 return
                             }
                         })
