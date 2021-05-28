@@ -138,3 +138,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 node_modules
+
+# tappay key
+/static/app_key.txt
