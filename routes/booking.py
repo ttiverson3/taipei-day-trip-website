@@ -1,7 +1,6 @@
 import sys
 sys.path.append("..")
-from flask import Blueprint, request, make_response, jsonify, redirect, url_for
-from routes.user import get_user_info
+from flask import Blueprint, request, make_response, jsonify
 from model.booking_data import *
 
 

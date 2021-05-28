@@ -1,5 +1,4 @@
 import sys
-from flask.globals import request
 sys.path.append("..")
 from dbconf import Connect
 from flask import make_response, jsonify

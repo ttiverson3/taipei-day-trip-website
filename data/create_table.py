@@ -35,16 +35,31 @@ def create_table():
     # email VARCHAR(255) NOT NULL UNIQUE,
     # password VARCHAR(255) NOT NULL,
     # )""")
-    cursor.execute("""CREATE TABLE booking 
+    # cursor.execute("""CREATE TABLE booking 
+    # (
+    # attraction_id INT NOT NULL, 
+    # date VARCHAR(255) NOT NULL,
+    # time VARCHAR(255) NOT NULL,
+    # price INT NOT NULL,
+    # uid VARCHAR(255) NOT NULL UNIQUE,
+    # PRIMARY KEY(attraction_id, uid),
+    # FOREIGN KEY(attraction_id) REFERENCES attraction(id),
+    # FOREIGN KEY(uid) REFERENCES user(id)
+    # )""")
+    cursor.execute("""CREATE TABLE orders 
     (
-    attraction_id INT NOT NULL, 
+    oid VARCHAR(255)NOT NULL, 
+    uid VARCHAR(255) NOT NULL,
+    aid INT NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    phone VARCHAR(255) NOT NULL,
+    price VARCHAR(255) NOT NULL,
     date VARCHAR(255) NOT NULL,
     time VARCHAR(255) NOT NULL,
-    price INT NOT NULL,
-    uid VARCHAR(255) NOT NULL UNIQUE,
-    PRIMARY KEY(attraction_id, uid),
-    FOREIGN KEY(attraction_id) REFERENCES attraction(id),
-    FOREIGN KEY(uid) REFERENCES user(id)
+    status BOOLEAN,
+    PRIMARY KEY(oid),
+    FOREIGN KEY(uid) REFERENCES user(id),
+    FOREIGN KEY(aid) REFERENCES attraction(id)
     )""")
     print("success")
 

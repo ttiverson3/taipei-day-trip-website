@@ -1,0 +1,57 @@
+@import "base.sass"
+
+*
+    // border: 1px solid #000
+
+#container
+    header
+        border-bottom: 1px solid #E8E8E8
+    main
+        max-width: 1200px
+        margin: 0 auto
+        @include pad
+            width: 90%
+            line-height: 24px
+        @include mobile
+            width: 100%
+        hr
+            border: 1px solid #E8E8E8
+        .finish-text
+            margin: auto 8%
+            color: #666
+            @include pad
+                margin-left: 10px
+            a
+                color: $blue
+                text-decoration: none
+        #thankyou-body
+            .top
+                margin: 0 8%
+                margin-bottom: 40px
+                @include pad
+                    margin: 0 10px
+                @include mobile
+                    margin: 0 10px
+                h3
+                    font-size: 19px
+                    color: #666
+                    margin-bottom: 35px
+                .order-body
+                    display: flex
+                    @include mobile
+                        flex-direction: column
+                    img
+                        width: 266px
+                        height: 200px
+                        @include mobile
+                            width: 100%
+                            height: 100%
+                    .order-content
+                        margin-left: 22px
+                        @include mobile
+                            margin-left: 0px
+                        p
+                            font-weight: bold
+                            color: $gray
+                            span
+                                font-weight: normal

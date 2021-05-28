@@ -3,6 +3,7 @@ from flask import *
 from routes.user import user_api
 from routes.attraction import attraction_api
 from routes.booking import booking_api
+from routes.order import order_api
 
 app = Flask(
 	__name__,
@@ -28,6 +29,9 @@ def booking():
 @app.route("/thankyou")
 def thankyou():
 	return render_template("thankyou.html")
+@app.route("/member")
+def member():
+	return render_template("member.html")
 
 # APIs
 # User APIs
@@ -37,6 +41,7 @@ app.register_blueprint(attraction_api, url_prefix = "/api")
 # Booking APIs
 app.register_blueprint(booking_api, url_prefix = "/api")
 # Order APIs
+app.register_blueprint(order_api, url_prefix = "/api")
 
 
 if __name__ == "__main__":

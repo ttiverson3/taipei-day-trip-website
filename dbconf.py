@@ -65,3 +65,18 @@ class Connect:
         except Exception as e:
             print(e, "ERROR in dbconf.Connect.insert()")
             return "MySQL connection error"
+    def update(self, sql):
+        try:
+            # connect to database
+            self.cnx = self.cnxpool.get_connection()
+            self.cur = self.cnx.cursor(buffered = True)
+            # execute query
+            self.cur.execute(sql)
+            self.cnx.commit()
+            # close database connection
+            self.cur.close()
+            self.cnx.close()
+            return "update success"
+        except Exception as e:
+            print(e, "ERROR in dbconf.Connect.insert()")
+            return "MySQL connection error"

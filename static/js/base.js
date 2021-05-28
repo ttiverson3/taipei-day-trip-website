@@ -73,28 +73,6 @@ let modalModels = {
         .then(result => {
             this.data = result;
         }).catch(error => console.log(error));
-    },
-    // 檢查註冊表單資料格式
-    checkInputFormat: function(){
-        let name = document.getElementById("name");
-        let email = document.getElementById("email");
-        let password = document.getElementById("password");
-        if(!password.checkValidity()){
-            document.getElementById("modalMessage").style.display = "block";
-            document.getElementById("modalMessage").textContent = "密碼由至少 8 個英文、數字、符號組成"
-        }
-        if(!email.checkValidity()){
-            document.getElementById("modalMessage").style.display = "block";
-            document.getElementById("modalMessage").textContent = "請輸入完整電子郵件 (其中必須包含@)"
-        }
-        if(!name.checkValidity()){
-            document.getElementById("modalMessage").style.display = "block";
-            document.getElementById("modalMessage").textContent = "使用者名稱由 4 - 12 個任意英數字或中文組成"
-        }
-        if(name.checkValidity() && email.checkValidity() && password.checkValidity()){
-            document.getElementById("modalMessage").style.display = "none";
-            return true;
-        }
     }
 }
 
@@ -111,7 +89,6 @@ let modalViews = {
         modalViews.renderModalContent("login");
         // 還原介面 (移除各種提示訊息及資料)
         modalViews.removeModalMessage();
-        modalViews.removeWarning();
         modalViews.removeModalValues();
     },
     // 移除表單提示訊息
@@ -133,7 +110,6 @@ let modalViews = {
         // 還原介面 (移除各種提示訊息及資料)
         modalViews.removeModalValues();
         modalViews.removeModalMessage();
-        modalViews.removeWarning();
         if(condition === "rigister"){ // 註冊情況
             // 隱藏登入表單
             loginContent.forEach(element => {
@@ -169,6 +145,7 @@ let modalViews = {
     showLogoutBtn: function(){
         document.getElementById("loginBtn").style.display = "none";
         document.getElementById("logoutBtn").style.display = "block";
+        document.getElementById("member").style.display = "block";
         nav.style.display = "flex";
     },
     // 未登入狀態：顯示 login 按鈕； 隱藏 logout 按鈕
@@ -183,51 +160,6 @@ let modalViews = {
             modalMessage.textContent = modalModels.data.message;
             modalMessage.style.display = "block";
     },
-    showLoginWarning: function(email, password){
-        modalViews.removeWarning();
-        let modalMessage = document.getElementById("modalMessage");
-        let emailWarning = document.getElementById("emailWarning");
-        let passwordWarning = document.getElementById("passwordWarning");
-        if(email == ""){
-            emailWarning.style.display = "inline";
-            modalMessage.textContent = "請輸入帳號";
-        }
-        if(password == ""){
-            passwordWarning.style.display = "inline";
-            modalMessage.textContent = "請輸入密碼";
-        }
-        if(email == "" && password == ""){
-            emailWarning.style.display = "inline";
-            passwordWarning.style.display = "inline";
-            modalMessage.textContent = "請輸入帳號及密碼";
-        }
-        modalMessage.style.display = "block";
-    },
-    showRegisterWarning: function(name, email, password){
-        modalViews.removeWarning();
-        let modalMessage = document.getElementById("modalMessage");
-        let nameWarning = document.getElementById("nameWarning");
-        let emailWarning = document.getElementById("emailWarning");
-        let passwordWarning = document.getElementById("passwordWarning");
-        if(password == ""){
-            passwordWarning.style.display = "inline";
-            modalMessage.textContent = "請輸入密碼";
-        }
-        if(email == ""){
-            emailWarning.style.display = "inline";
-            modalMessage.textContent = "請輸入信箱";
-        }
-        if(name == ""){
-            nameWarning.style.display = "inline";
-            modalMessage.textContent = "請輸入姓名";
-        }
-        if(name == "" && email == "" && password == "") {
-            emailWarning.style.display = "inline";
-            passwordWarning.style.display = "inline";
-            modalMessage.textContent = "請輸入姓名、帳號及密碼";
-        }
-        modalMessage.style.display = "block";
-    },
     // 註冊成功訊息
     showRegisterSuccess: function(){
         let modalMessage = document.getElementById("modalMessage");
@@ -239,24 +171,24 @@ let modalViews = {
         let modalMessage = document.getElementById("modalMessage");
         modalMessage.textContent = modalModels.data.message;
         modalMessage.style.display = "block";
-    },
-    // 移除警告訊息
-    removeWarning: function(){
-        document.getElementById("nameWarning").style.display = "none";
-        document.getElementById("emailWarning").style.display = "none";
-        document.getElementById("passwordWarning").style.display = "none";
     }
 }
 
 let modalControllers = {
     login: function(e){
-        e.preventDefault();
-        let email = document.getElementById("email").value;
-        let password = document.getElementById("password").value;
-        if(email == "" || password == ""){
-            modalViews.showLoginWarning(email, password);
+        let sum = 0;
+        for(item in modalControllers.check){
+            if(item === "email" || item === "password"){
+                sum += modalControllers.check[item];
+            }
         }
-        else{
+        // console.log(modalControllers.check)
+        if(sum === 2){
+            e.preventDefault();
+            const name = document.getElementById("name");
+            name.removeAttribute("required");
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
             modalModels.userLogin(email, password).then(() => {
                 if(modalModels.data.ok){
                     modalViews.closeModal();
@@ -271,28 +203,25 @@ let modalControllers = {
         }
     },
     register: function(e){
-        e.preventDefault();
-        let name = document.getElementById("name").value;
-        let email = document.getElementById("email").value;
-        let password = document.getElementById("password").value;
-        if(name == "" || email == "" || password == ""){
-            modalViews.showRegisterWarning(name , email, password);
+        let sum = 0;
+        for(item in modalControllers.check){
+            sum += modalControllers.check[item];
         }
-        else{
-            modalViews.removeWarning();
-            modalModels.checkInputFormat();
-            if(modalModels.checkInputFormat()){
-                modalModels.userRegister(name, email, password).then(() => {
-                    if(modalModels.data.ok){
-                        modalViews.removeModalValues();
-                        modalViews.showRegisterSuccess();
-                    }
-                    if(modalModels.data.error){
-                        modalViews.removeModalValues();
-                        modalViews.showRegisterError();
-                    }
-                });
-            }
+        if(sum === 3){
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            modalModels.userRegister(name, email, password).then(() => {
+                if(modalModels.data.ok){
+                    modalViews.removeModalValues();
+                    modalViews.showRegisterSuccess();
+                }
+                if(modalModels.data.error){
+                    modalViews.removeModalValues();
+                    modalViews.showRegisterError();
+                }
+            });
         }
     },
     loginStatus: false,
@@ -317,6 +246,7 @@ let modalControllers = {
                 if(modalModels.data.ok){
                     localStorage.removeItem("username");
                     localStorage.removeItem("email");
+                    localStorage.removeItem("number");
                     modalControllers.checkUserCondition();
                     window.location.replace("/");
                 }
@@ -329,6 +259,34 @@ let modalControllers = {
         else{
             modalViews.showModal();
         }
+    },
+    check: {
+        name: false,
+        email: false,
+        password: false
+    },
+    checkInput: function(){
+        const inputs = document.getElementsByClassName("login")[0].querySelectorAll("input");
+        inputs.forEach(input => {
+            input.addEventListener("input", () => {
+                // console.log(input.name)
+                let constraints = {
+                    name: ["^[\\u4e00-\\u9fa5a-zA-Z0-9]{4,12}$", "使用者名稱由 4 - 12 個任意英數字或中文組成"],
+                    email: ["^.+@.*$", "請輸入完整電子郵件 (其中必須包含@)"],
+                    password: ["[\\w\\W]{8,}", "密碼由至少 8 個英文、數字、符號組成"]
+                }
+                let inputColumn = input.name
+                let constraint = new RegExp(constraints[inputColumn][0], "");
+                if(constraint.test(input.value)) {
+                    input.setCustomValidity("");
+                    modalControllers.check[inputColumn] = true;
+                }
+                else{
+                    input.setCustomValidity(constraints[inputColumn][1]);
+                    modalControllers.check[inputColumn] = false;
+                }
+            })
+        })
     }
 }
 
@@ -339,7 +297,10 @@ document.getElementsByClassName("close")[0].addEventListener("click", () => moda
 document.getElementById("doRegisterBtn").addEventListener("click", () => modalViews.renderModalContent("rigister"));
 document.getElementById("doLoginBtn").addEventListener("click", () => modalViews.renderModalContent("login"));
 
-window.addEventListener("load", () => modalControllers.checkUserCondition());
+window.addEventListener("load", () => {
+    modalControllers.checkUserCondition();
+    modalControllers.checkInput();
+});
 document.getElementById("login").addEventListener("click", (e) => modalControllers.login(e));
 document.getElementById("register").addEventListener("click", (e) => modalControllers.register(e));
 document.getElementById("logoutBtn").addEventListener("click", () => modalControllers.logout());
