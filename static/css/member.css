@@ -217,3 +217,25 @@ html, body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+#container header {
+  border-bottom: 1px solid #E8E8E8;
+}
+
+#container main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1200px) {
+  #container main {
+    width: 90%;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #container main {
+    width: 100%;
+  }
+}

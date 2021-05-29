@@ -189,6 +189,7 @@ html, body {
 }
 
 #container main .loader-inner {
+  width: 50%;
   z-index: 999;
   position: absoulte;
   top: 200px;
@@ -394,9 +395,17 @@ html, body {
 
 #container main #booking-body .bottom .payment-info label {
   margin-bottom: 15px;
+  display: flex;
+  align-items: center;
 }
 
-#container main #booking-body .bottom .payment-info input {
+#container main #booking-body .bottom .payment-info label span {
+  display: block;
+  vertical-align: middle;
+}
+
+#container main #booking-body .bottom .payment-info label .tpfield {
+  display: block;
   width: 200px;
   height: 38px;
   border-radius: 5px;

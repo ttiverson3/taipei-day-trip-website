@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');</style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.2/loaders.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/loaders.min.css') }}">
     {% block css %}
     {% endblock %}
     <title>{% block title %}{% endblock %}</title>
@@ -18,6 +18,7 @@
             <div>
                 <a href="/"><h1>台北一日遊</h1></a>
                 <ul id="nav" style="display: none;">
+                    <li id="member" style="display: block;"><a href="/member" style="color: #666;">會員中心</a></li>
                     <li id="bookingBtn">預定行程</li>
                     <li id="loginBtn" style="display: block;">登入/註冊</li>
                     <li id="logoutBtn" style="display: none;">登出系統</li>
@@ -37,15 +38,12 @@
                     <div class="modal-body">
                         <form method="post" class="login">
                             <label>
-                                <span id="nameWarning" style="color: red; display: none;">&#9888;</span>
-                                <input id="name" type="text" name="name" class="register-content" placeholder="輸入姓名" style="display: none;" pattern="^[\u4e00-\u9fa5a-zA-Z0-9]{4,12}$" required>
+                                <input id="name" type="text" name="name" class="register-content" placeholder="輸入姓名" style="display: none;" pattern="^[\u4e00-\u9fa5a-zA-Z0-9]{4,12}$">
                             </label>
                             <label>
-                                <span id="emailWarning" style="color: red; display: none;">&#9888;</span>
                                 <input id="email" type="email" name="email" placeholder="輸入電子信箱" pattern="^.+@.*$" required>
                             </label>
                             <label>
-                                <span id="passwordWarning" style="color: red; display: none;">&#9888;</span>
                                 <input id="password" type="password" name="password" placeholder="輸入密碼" pattern="[\w\W]{8,}" required>
                             </label>
                             
@@ -74,7 +72,7 @@
             <p>COPYRIGHT © 2021 台北一日遊</p>
         </footer>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.2/loaders.css.min.js"></script>
+    <script src="{{ url_for('static', filename = 'js/loaders.css.js') }}"></script>
     <script src="{{ url_for('static', filename = 'js/base.js') }}"></script>
     {% block js %}
     {% endblock %}

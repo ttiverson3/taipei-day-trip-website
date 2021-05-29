@@ -28,16 +28,16 @@
         <h3>您的聯絡資訊</h3>
         <form class="user-info">
             <label>
-                <label for="name">聯絡姓名：</label>
-                <input type="text" name="name" id="booking-name">
+                <label for="booking-name">聯絡姓名：</label>
+                <input type="text" name="name" id="booking-name" required>
             </label>
             <label>
-                <label for="email">聯絡信箱：</label>
-                <input type="email" name="email" id="booking-email">
+                <label for="booking-email">聯絡信箱：</label>
+                <input type="email" name="email" id="booking-email" required>
             </label>
             <label>
-                <label for="phone">手機號碼：</label>
-                <input type="text" name="phone" id="booking-phone">
+                <label for="booking-phone">手機號碼：</label>
+                <input type="text" name="phone" id="booking-phone" required>
             </label>
         </form>
         <p>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</p>
@@ -47,27 +47,29 @@
         <h3>信用卡付款資訊</h3>
         <form class="payment-info">
             <label>
-                <label for="ccn">卡片號碼：</label>
-                <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="**** **** **** ****">
+                <span for="card-number">卡片號碼：</span>
+                <div class="tpfield" id="card-number"></div>
             </label>
             <label>
-                <label for="cce">過期時間：</label>
-                <input id="cce" type="tel" autocomplete="cc-exp" maxlength="5" placeholder="MM / YY">
+                <span for="card-expiration-date">過期時間：</span>
+                <div class="tpfield" id="card-expiration-date"></div>
             </label>
             <label>
-                <label for="ccc">驗證密碼：</label>
-                <input id="ccc" type="text" autocomplete="cc-csc" maxlength="3" placeholder="CVV">
+                <span for="card-ccv">驗證密碼：</span>
+                <div class="tpfield" id="card-ccv"></div>
             </label>
         </form>
     </div>
     <hr>
     <div class="send">
         <p>總價：<span id="total-price"></span></p>
-        <button type="submit">確認訂購並付款</button>
+        <button type="submit" id="orderBtn">確認訂購並付款</button>
     </div>
 </div>
 {% endblock %}
 
 {% block js %}
     <script src="{{ url_for('static', filename = 'js/booking.js') }}"></script>
+    <script src="https://js.tappaysdk.com/tpdirect/v5.7.0"></script>
+    <script src="{{ url_for('static', filename = 'js/tappay.js') }}"></script>
 {% endblock %}
