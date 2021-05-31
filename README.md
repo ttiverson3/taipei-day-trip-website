@@ -1,7 +1,7 @@
 # Taipei-day-trip-website 台北一日遊電商網站
 ![](https://github.com/ttiverson3/taipei-day-trip-website/blob/develop/data/imgs/index.png)
 ## Demo
-http://18.116.177.114:3000/
+https://taipeidaytrip.me/
 ## 簡介
 運用前後端分離架構，根據 RESTful API 設計，整合金流服務的電商網站，透過 Amazon EC2 將網站上線。主要功能：<br>
 - User System：會員註冊、登入、登出
@@ -20,3 +20,5 @@ Cloud Service：AWS EC2 <br>
 - RESTful API 開發
 - JavaScript AJAX API 串接
 - RWD
+- TapPay 第三方金流服務串接
+- Nginx HTTPS Reverse Proxy
