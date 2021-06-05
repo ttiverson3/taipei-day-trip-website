@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/loaders.css') }}">
     {% block css %}
     {% endblock %}
@@ -18,10 +19,10 @@
             <div>
                 <a href="/"><h1>台北一日遊</h1></a>
                 <ul id="nav" style="display: none;">
-                    <li id="member" style="display: block;"><a href="/member" style="color: #666;">會員中心</a></li>
-                    <li id="bookingBtn">預定行程</li>
-                    <li id="loginBtn" style="display: block;">登入/註冊</li>
-                    <li id="logoutBtn" style="display: none;">登出系統</li>
+                    <li id="nav-order" style="display: none;"><a href="/order">訂單查詢</a></li>
+                    <li id="nav-booking">預定行程</li>
+                    <li id="nav-login" style="display: block;">登入/註冊</li>
+                    <li id="nav-logout" style="display: none;">登出系統</li>
                 </ul>
             </div>
             {% endblock %}
@@ -38,7 +39,7 @@
                     <div class="modal-body">
                         <form method="post" class="login">
                             <label>
-                                <input id="name" type="text" name="name" class="register-content" placeholder="輸入姓名" style="display: none;" pattern="^[\u4e00-\u9fa5a-zA-Z0-9]{4,12}$">
+                                <input id="name" type="text" name="name" class="register-content" placeholder="輸入姓名" style="display: none;" pattern="^[\u4e00-\u9fa5a-zA-Z0-9]{4,12}$" required>
                             </label>
                             <label>
                                 <input id="email" type="email" name="email" placeholder="輸入電子信箱" pattern="^.+@.*$" required>
@@ -61,18 +62,17 @@
             {% block section %}{% endblock %}
         </section>
         <main>
+            {% block main %}{% endblock %}
             <div class="loader-inner ball-scale-multiple">
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
-            {% block main %}{% endblock %}
         </main>
         <footer>
             <p>COPYRIGHT © 2021 台北一日遊</p>
         </footer>
     </div>
-    <script src="{{ url_for('static', filename = 'js/loaders.css.js') }}"></script>
     <script src="{{ url_for('static', filename = 'js/base.js') }}"></script>
     {% block js %}
     {% endblock %}

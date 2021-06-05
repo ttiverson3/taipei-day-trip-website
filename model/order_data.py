@@ -75,7 +75,16 @@ def make_order_data(order_data):
                     response = make_response(jsonify(data), 200)
                     return response
             else:
-                response = make_response(jsonify({"error": True, "message": "付款失敗，輸入不正確或其他原因"}), 400)
+                data = {
+                    "data": {
+                        "number": oid,
+                        "payment": {
+                        "status": r["status"],
+                        "message": str(r["msg"])
+                        }
+                    }
+                }
+                response = make_response(jsonify(data), 200)
                 return response
         if result == "MySQL connection error":
             response = make_response(jsonify({"error": True, "message": "訂單建立失敗，輸入不正確或其他原因"}), 400)
@@ -93,6 +102,9 @@ def get_order_data(orderNumber):
                 WHERE oid = '{orderNumber}' AND u.id = o.uid AND a.id = o.aid 
             """
         result = db.query(sql)
+        if result == "MySQL connection error":
+            response = make_response(jsonify({"error": True, "message": "資料庫連線失敗"}), 500)
+            return response
         if result:
             result = result[0]
             number = result[0]
@@ -131,7 +143,56 @@ def get_order_data(orderNumber):
             }
             response = make_response(jsonify(data), 200)
             return response
+        if result == []:
+            response = make_response(jsonify({"data": None}), 200)
+            return response
     except Exception as e:
         print(e, "ERROR in model.order_data.get_order_data()")
+        response = make_response(jsonify({"error": True, "message": "伺服器內部錯誤"}), 500)
+        return response
+
+
+def get_orders_dict(record):
+    sql = f"""
+            SELECT name
+            FROM attraction
+            WHERE id = '{record[2]}'
+            """
+    result = db.query(sql)
+    attraction_name = result[0][0]
+    data = {
+        "oid": record[0],
+        "attraction_name": attraction_name,
+        "date": record[6],
+        "status": record[8],
+        "price": record[5]
+    }
+    return data
+
+def get_all_order_data(sessionId):
+    try:
+        uid = sessionId
+        sql = f"""
+                SELECT *
+                FROM orders
+                WHERE uid = '{uid}'
+                ORDER BY oid DESC
+                LIMIT 0, 30
+            """
+        result = db.query(sql)
+        if result == "MySQL connection error":
+            response = make_response(jsonify({"error": True, "message": "資料庫連線失敗"}), 500)
+            return response
+        elif result != []:
+            data = []
+            for record in result:
+                data.append(get_orders_dict(record))
+                response = make_response(jsonify({"data": data}), 200)
+            return response
+        else:
+            response = make_response(jsonify({"error": True,"message": "無訂單資料"}), 400)
+            return response
+    except Exception as e:
+        print(e, "ERROR in model.order_data.get_all_order_data()")
         response = make_response(jsonify({"error": True, "message": "伺服器內部錯誤"}), 500)
         return response

@@ -143,15 +143,16 @@ let modalViews = {
     },
     // 登入狀態：隱藏 login 按鈕； 顯示 logout 按鈕
     showLogoutBtn: function(){
-        document.getElementById("loginBtn").style.display = "none";
-        document.getElementById("logoutBtn").style.display = "block";
-        document.getElementById("member").style.display = "block";
+        document.getElementById("nav-login").style.display = "none";
+        document.getElementById("nav-logout").style.display = "block";
+        document.getElementById("nav-order").style.display = "block";
         nav.style.display = "flex";
     },
     // 未登入狀態：顯示 login 按鈕； 隱藏 logout 按鈕
     showLoginBtn: function(){
-        document.getElementById("loginBtn").style.display = "block";
-        document.getElementById("logoutBtn").style.display = "none";
+        document.getElementById("nav-login").style.display = "block";
+        document.getElementById("nav-logout").style.display = "none";
+        document.getElementById("nav-order").style.display = "none";
         nav.style.display = "flex";
     },
     // 登入失敗：顯示錯誤訊息
@@ -247,6 +248,7 @@ let modalControllers = {
                     localStorage.removeItem("username");
                     localStorage.removeItem("email");
                     localStorage.removeItem("number");
+                    localStorage.removeItem("failMsg");
                     modalControllers.checkUserCondition();
                     window.location.replace("/");
                 }
@@ -292,7 +294,7 @@ let modalControllers = {
 
 
 window.addEventListener("click", (e) => modalViews.clickOutspaceCloseModal(e));
-document.getElementById("loginBtn").addEventListener("click", () => modalViews.showModal());
+document.getElementById("nav-login").addEventListener("click", () => modalViews.showModal());
 document.getElementsByClassName("close")[0].addEventListener("click", () => modalViews.closeModal());
 document.getElementById("doRegisterBtn").addEventListener("click", () => modalViews.renderModalContent("rigister"));
 document.getElementById("doLoginBtn").addEventListener("click", () => modalViews.renderModalContent("login"));
@@ -303,6 +305,5 @@ window.addEventListener("load", () => {
 });
 document.getElementById("login").addEventListener("click", (e) => modalControllers.login(e));
 document.getElementById("register").addEventListener("click", (e) => modalControllers.register(e));
-document.getElementById("logoutBtn").addEventListener("click", () => modalControllers.logout());
-
-document.getElementById("bookingBtn").addEventListener("click", () => modalControllers.book());
+document.getElementById("nav-logout").addEventListener("click", () => modalControllers.logout());
+document.getElementById("nav-booking").addEventListener("click", () => modalControllers.book());

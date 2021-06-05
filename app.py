@@ -1,4 +1,3 @@
-from sys import prefix
 from flask import *
 from routes.user import user_api
 from routes.attraction import attraction_api
@@ -29,9 +28,9 @@ def booking():
 @app.route("/thankyou")
 def thankyou():
 	return render_template("thankyou.html")
-@app.route("/member")
-def member():
-	return render_template("member.html")
+@app.route("/order")
+def order():
+	return render_template("order.html")
 
 # APIs
 # User APIs

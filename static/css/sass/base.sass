@@ -39,6 +39,13 @@ html, body
             padding: 0 10px
             @include mobile
                 padding: 0 0
+            .icon
+                background: black
+                display: block
+                position: absolute
+                right: 0
+                top: 0
+                font-size: 20px
             a
                 text-decoration: none
             h1
@@ -60,9 +67,15 @@ html, body
                     margin: 0 5px
                     font-size: 16px
                     cursor: pointer
+                    &:hover
+                        color: $blue
                     @include mobile
                         width: 75px
                         margin: 0 0
+                    a
+                        color: #666
+                        &:hover
+                            color: $blue
     section
         .modal
             display: none
@@ -132,6 +145,8 @@ html, body
                             border-color: transparent
                             color: #fff
                             cursor: pointer
+                            &:hover
+                                background: #387c8d
                     #modalMessage
                         display: none
                         text-align: center

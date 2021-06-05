@@ -140,3 +140,4 @@ cython_debug/
 node_modules
 
 /static/app_key.txt
+test.py

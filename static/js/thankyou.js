@@ -19,7 +19,7 @@ let models = {
 }
 
 let views = {
-    renderData: function(){
+    renderSuccessData: function(){
         document.getElementById("username").textContent = models.data.data.contact.name;
         document.getElementById("attraction-img").src = models.data.data.trip.attraction.image;
         document.getElementById("order-number").textContent = models.data.data.number;
@@ -33,10 +33,28 @@ let views = {
             document.getElementById("order-time").textContent = "下午 2 點到晚上 9 點";
         }
         document.getElementById("order-price").textContent = "新台幣 " + models.data.data.price + " 元";
-
+        document.getElementsByClassName("finish-text")[0].style.display = "block";
         const loader = document.getElementsByClassName("loader-inner")[0]
         loader.style.display = "none";
-        let thankyouBody = document.getElementById("thankyou-body");
+        const thankyouBody = document.getElementById("thankyou-body");
+        thankyouBody.style.display = "block";
+    },
+    renderFailData: function(){
+        const successBlock = document.getElementById("success-top");
+        successBlock.style.display = "none";
+        const failMsg = document.getElementById("fail-msg");
+        if(localStorage.getItem("failMsg")){
+            failMsg.textContent = localStorage.getItem("failMsg");
+        }
+        else{
+            failMsg.textContent = "尚未付款";
+        }
+        const FailBlock = document.getElementById("fail-top");
+        FailBlock.style.display = "block";
+        document.getElementsByClassName("finish-text")[1].style.display = "block";
+        const loader = document.getElementsByClassName("loader-inner")[0];
+        loader.style.display = "none";
+        const thankyouBody = document.getElementById("thankyou-body");
         thankyouBody.style.display = "block";
     }
 }
@@ -44,12 +62,20 @@ let views = {
 let controllers = {
     getOrder: function(){
         models.getOrderData().then(() => {
-            // console.log(models.data)
             if(models.data.error){
                 window.location.replace("/");
                 return
             }
-            views.renderData();
+            // 付款成功
+            if(models.data.data.status === 1){
+                views.renderSuccessData();
+                return
+            }
+            // 付款失敗
+            if(models.data.data.status === 0){
+                views.renderFailData();
+                return
+            }
         });
     }
 }

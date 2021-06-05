@@ -40,6 +40,15 @@ html, body {
   }
 }
 
+#container header div .icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+}
+
 #container header div a {
   text-decoration: none;
 }
@@ -65,6 +74,12 @@ html, body {
   margin-right: 3px;
 }
 
+@media screen and (max-width: 1200px) {
+  #container header div ul {
+    display: none;
+  }
+}
+
 #container header div ul li {
   color: #757575;
   list-style: none;
@@ -73,11 +88,23 @@ html, body {
   cursor: pointer;
 }
 
+#container header div ul li:hover {
+  color: #489;
+}
+
 @media screen and (max-width: 600px) {
   #container header div ul li {
     width: 75px;
     margin: 0 0;
   }
+}
+
+#container header div ul li a {
+  color: #666;
+}
+
+#container header div ul li a:hover {
+  color: #489;
 }
 
 #container section .modal {
@@ -173,6 +200,10 @@ html, body {
   cursor: pointer;
 }
 
+#container section .modal .modal-content .modal-body .login button:hover {
+  background: #387c8d;
+}
+
 #container section .modal .modal-content .modal-body #modalMessage {
   display: none;
   text-align: center;
@@ -238,4 +269,76 @@ html, body {
   #container main {
     width: 100%;
   }
+}
+
+#container main #order-body .top h2 {
+  text-align: center;
+  color: #666;
+}
+
+#container main #order-body .top form {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#container main #order-body .top form input {
+  width: 250px;
+  height: 40px;
+  padding: 5px;
+}
+
+#container main #order-body .middle table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 20px auto;
+}
+
+#container main #order-body .middle table td, #container main #order-body .middle table th {
+  border: 1px solid #000;
+  text-align: center;
+  height: 40px;
+}
+
+#container main #order-body .middle table td button, #container main #order-body .middle table th button {
+  background-color: #489;
+  border-color: transparent;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#container main #order-body .bottom {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+  #container main #order-body .bottom {
+    margin-bottom: 20px;
+  }
+}
+
+#container main #order-body .bottom p {
+  margin: 0;
+}
+
+#container main #order-body .bottom .pagination a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#container main #order-body .bottom .pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+#container main #order-body .bottom .pagination .active {
+  background-color: #489;
+  color: white;
+  border-radius: 5px;
 }

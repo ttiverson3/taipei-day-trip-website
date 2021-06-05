@@ -40,6 +40,15 @@ html, body {
   }
 }
 
+#container header div .icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+}
+
 #container header div a {
   text-decoration: none;
 }
@@ -73,11 +82,23 @@ html, body {
   cursor: pointer;
 }
 
+#container header div ul li:hover {
+  color: #489;
+}
+
 @media screen and (max-width: 600px) {
   #container header div ul li {
     width: 75px;
     margin: 0 0;
   }
+}
+
+#container header div ul li a {
+  color: #666;
+}
+
+#container header div ul li a:hover {
+  color: #489;
 }
 
 #container section .modal {
@@ -171,6 +192,10 @@ html, body {
   border-color: transparent;
   color: #fff;
   cursor: pointer;
+}
+
+#container section .modal .modal-content .modal-body .login button:hover {
+  background: #387c8d;
 }
 
 #container section .modal .modal-content .modal-body #modalMessage {
