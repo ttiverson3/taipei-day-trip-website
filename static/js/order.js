@@ -30,40 +30,35 @@ let views = {
         // 渲染訂單表格
         const fragment = document.createDocumentFragment();
         const orderData = models.data.data;
-        let num = 0;
-        if(models.data.data.length < 10){
-            num = models.data.data.length;
-        }
-        else{
-            num = 10;
-        }
-        for(i = views.page * 10; i < views.page * 10 + num; i++){
+        for(i = views.page * 10; i < views.page * 10 + 10; i++){
             let data = orderData[i];
-            const tr = document.createElement("tr");
-            const td = document.createElement("td")
-            td.textContent = i + 1;
-            tr.appendChild(td);
-            for(key in data){
-                const td = document.createElement("td");
-                if(key === "status"){
-                    if(data[key] === 1){
-                        td.textContent = "已付款";
+            if(data){
+                const tr = document.createElement("tr");
+                const td = document.createElement("td")
+                td.textContent = i + 1;
+                tr.appendChild(td);
+                for(key in data){
+                    const td = document.createElement("td");
+                    if(key === "status"){
+                        if(data[key] === 1){
+                            td.textContent = "已付款";
+                        }
+                        else{
+                            td.textContent = "未付款";
+                        }
                     }
                     else{
-                        td.textContent = "未付款";
+                        td.textContent = data[key];
                     }
+                    tr.appendChild(td);
                 }
-                else{
-                    td.textContent = data[key];
-                }
-                tr.appendChild(td);
+                const lastTd = document.createElement("td");
+                const btn = document.createElement("button");
+                btn.textContent = "檢視";
+                lastTd.appendChild(btn);
+                tr.appendChild(lastTd);
+                fragment.appendChild(tr);
             }
-            const lastTd = document.createElement("td");
-            const btn = document.createElement("button");
-            btn.textContent = "檢視";
-            lastTd.appendChild(btn);
-            tr.appendChild(lastTd);
-            fragment.appendChild(tr);
         }
         // 訂單資料加入表格中
         const orderTable = document.getElementById("order-table");
@@ -123,14 +118,7 @@ let views = {
         // 渲染訂單表格
         const fragment = document.createDocumentFragment();
         const orderData = models.data.data;
-        let num = 0;
-        if(models.data.data.length < 10){
-            num = models.data.data.length;
-        }
-        else{
-            num = 10;
-        }
-        for(i = views.page * 10; i < views.page * 10 + num; i++){
+        for(i = views.page * 10; i < views.page * 10 + 10; i++){
             let data = orderData[i];
             if(data){
                 const tr = document.createElement("tr");
