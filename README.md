@@ -21,4 +21,5 @@ Cloud Service：AWS EC2 <br>
 - JavaScript AJAX API 串接
 - RWD
 - TapPay 第三方金流服務串接
+- gunicorn WSGI
 - Nginx HTTPS Reverse Proxy
