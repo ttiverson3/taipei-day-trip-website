@@ -132,32 +132,34 @@ let views = {
         }
         for(i = views.page * 10; i < views.page * 10 + num; i++){
             let data = orderData[i];
-            const tr = document.createElement("tr");
-            const td = document.createElement("td");
-            td.textContent = i + 1;
-            tr.appendChild(td);
-            for(key in data){
+            if(data){
+                const tr = document.createElement("tr");
                 const td = document.createElement("td");
-                if(key === "status"){
-                    if(data[key] === 1){
-                        td.textContent = "已付款";
+                td.textContent = i + 1;
+                tr.appendChild(td);
+                for(key in data){
+                    const td = document.createElement("td");
+                    if(key === "status"){
+                        if(data[key] === 1){
+                            td.textContent = "已付款";
+                        }
+                        else{
+                            td.textContent = "未付款";
+                        }
                     }
                     else{
-                        td.textContent = "未付款";
+                        td.textContent = data[key];
                     }
+                    tr.appendChild(td);
                 }
-                else{
-                    td.textContent = data[key];
-                }
-                tr.appendChild(td);
+                const lastTd = document.createElement("td");
+                const btn = document.createElement("button");
+                btn.textContent = "檢視";
+                lastTd.appendChild(btn);
+                tr.appendChild(lastTd);
+                fragment.appendChild(tr);
+                orderTable.appendChild(fragment);
             }
-            const lastTd = document.createElement("td");
-            const btn = document.createElement("button");
-            btn.textContent = "檢視";
-            lastTd.appendChild(btn);
-            tr.appendChild(lastTd);
-            fragment.appendChild(tr);
-            orderTable.appendChild(fragment);
         }
     },
     renderNoOrders: function(){
