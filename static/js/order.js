@@ -30,7 +30,14 @@ let views = {
         // 渲染訂單表格
         const fragment = document.createDocumentFragment();
         const orderData = models.data.data;
-        for(i = views.page * 10; i < views.page * 10 + 10; i++){
+        let num = 0;
+        if(models.data.data.length < 10){
+            num = models.data.data.length;
+        }
+        else{
+            num = 10;
+        }
+        for(i = views.page * 10; i < views.page * 10 + num; i++){
             let data = orderData[i];
             const tr = document.createElement("tr");
             const td = document.createElement("td")
@@ -116,8 +123,14 @@ let views = {
         // 渲染訂單表格
         const fragment = document.createDocumentFragment();
         const orderData = models.data.data;
-        let index = views.page * 10
-        for(i = index; i < index + 10; i++){
+        let num = 0;
+        if(models.data.data.length < 10){
+            num = models.data.data.length;
+        }
+        else{
+            num = 10;
+        }
+        for(i = views.page * 10; i < views.page * 10 + num; i++){
             let data = orderData[i];
             const tr = document.createElement("tr");
             const td = document.createElement("td");
