@@ -1,0 +1,66 @@
+@import "base.sass"
+
+*
+    // border: 1px solid #000
+
+#container
+    header
+        border-bottom: 1px solid #E8E8E8
+    main
+        max-width: 1200px
+        margin: 0 auto
+        @include pad
+            width: 90%
+            line-height: 24px
+        @include mobile
+            width: 100%
+        #order-body
+            .top
+                h2
+                    text-align: center
+                    color: #666
+                form
+                    width: 90%
+                    margin: 0 auto
+                    input
+                        width: 250px
+                        height: 40px
+                        padding: 5px
+            .middle
+                table
+                    width: 90%
+                    border-collapse: collapse
+                    margin: 20px auto
+                    td, th
+                        border: 1px solid #000
+                        text-align: center
+                        height: 40px
+                        button
+                            background-color: $blue
+                            border-color: transparent
+                            color: #fff
+                            padding: 5px 10px
+                            border-radius: 3px
+                            cursor: pointer
+            .bottom
+                display: flex
+                width: 90%
+                margin: 0 auto
+                justify-content: space-between
+                @include mobile
+                    margin-bottom: 20px
+                p
+                    margin: 0
+                .pagination
+                    a
+                        color: black
+                        padding: 8px 16px
+                        text-decoration: none
+                        cursor: pointer
+                        &:hover:not(.active)
+                            background-color: #ddd
+                            border-radius: 5px
+                    .active
+                        background-color: $blue
+                        color: white
+                        border-radius: 5px

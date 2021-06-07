@@ -1,12 +1,4 @@
-let APP_KEY;
-fetch("app_key.txt")
-.then(response => {
-    return response.text();
-})
-.then(result => {
-    APP_KEY = result;
-    TPDirect.setupSDK(20468, APP_KEY, "sandbox")
-})
+TPDirect.setupSDK(20468, "app_4I1CzKijPHmGkioL7zeWNvAyOUzNDdQBxUSZq6MHmhYMVOtPEzgvoxTXDA4B", "sandbox")
 
 var fields = {
     number: {
@@ -57,64 +49,65 @@ TPDirect.card.onUpdate(function (update) {
     // --> you can call TPDirect.card.getPrime()
     if (update.canGetPrime) {
         // Enable submit Button to get prime.
-        submitButton.removeAttribute('disabled')
-        // console.log(TPDirect.card.getTappayFieldsStatus());
+        submitButton.removeAttribute('disabled');
+        submitButton.style.backgroundColor = "#489";
     } else {
         // Disable submit Button to get prime.
-        // submitButton.setAttribute('disabled', true)
-        // console.log(TPDirect.card.getTappayFieldsStatus());
+        submitButton.setAttribute('disabled', true);
+        submitButton.style.backgroundColor = "#666";
     }
-                                            
-    // cardTypes = ['mastercard', 'visa', 'jcb', 'amex', 'unknown']
+
+    // cardTypes = ['mastercard', 'visa', 'jcb', 'amex', 'unionpay','unknown']
     if (update.cardType === 'visa') {
         // Handle card type visa.
     }
 
+    const cardNumber = document.getElementById("card-number");
+    const cardDate = document.getElementById("card-expiration-date");
+    const cardCCV = document.getElementById("card-ccv");
+    const checkNum = document.getElementById("check-num");
+    const checkDate = document.getElementById("check-date");
+    const checkCCV = document.getElementById("check-ccv");
     // number 欄位是錯誤的
     if (update.status.number === 2) {
         // setNumberFormGroupToError()
+        cardNumber.style.border = "1px solid red";
+        checkNum.style.display = "none";
     } else if (update.status.number === 0) {
         // setNumberFormGroupToSuccess()
+        cardNumber.style.border = "1px solid green";
+        checkNum.style.display = "inline-block";
     } else {
         // setNumberFormGroupToNormal()
+        cardNumber.style.border = "1px solid orange";
+        checkNum.style.display = "none";
     }
-    
+
     if (update.status.expiry === 2) {
         // setNumberFormGroupToError()
+        cardDate.style.border = "1px solid red";
+        checkDate.style.display = "none";
     } else if (update.status.expiry === 0) {
         // setNumberFormGroupToSuccess()
+        cardDate.style.border = "1px solid green";
+        checkDate.style.display = "inline-block";
     } else {
         // setNumberFormGroupToNormal()
+        cardDate.style.border = "1px solid orange";
+        checkDate.style.display = "none";
     }
-    
+
     if (update.status.ccv === 2) {
         // setNumberFormGroupToError()
+        cardCCV.style.border = "1px solid red";
+        checkCCV.style.display = "none";
     } else if (update.status.ccv === 0) {
         // setNumberFormGroupToSuccess()
+        cardCCV.style.border = "1px solid green";
+        checkCCV.style.display = "inline-block";
     } else {
         // setNumberFormGroupToNormal()
+        cardCCV.style.border = "1px solid orange";
+        checkCCV.style.display = "none";
     }
 })
-
-function onSubmit(event) {
-    event.preventDefault()
-    // 取得 TapPay Fields 的 status
-    const tappayStatus = TPDirect.card.getTappayFieldsStatus()
-    console.log(tappayStatus);
-    // 確認是否可以 getPrime
-    if (tappayStatus.canGetPrime === false) {
-        alert('can not get prime')
-        return
-    }
-    // Get prime
-    TPDirect.card.getPrime((result) => {
-        if (result.status !== 0) {
-            alert('get prime error ' + result.msg)
-            return
-        }
-        // alert('get prime 成功，prime: ' + result.card.prime)
-        return result.card.prime
-        // send prime to your server, to pay with Pay by Prime API .
-        // Pay By Prime Docs: https://docs.tappaysdk.com/tutorial/zh/back.html#pay-by-prime-api
-    })
-}

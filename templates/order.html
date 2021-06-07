@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/order.css') }}">
+{% endblock %}
+{% block title %}
+訂單查詢
+{% endblock %}
+
+{% block main %}
+<div id="order-body" style="display: none;">
+    <div class="top">
+        <h2>訂單清單</h2>
+        <form>
+            <label for="number-input">訂單編號：</label>
+            <input id="number-input" type="text" placeholder="請輸入訂單編號">
+        </form>
+    </div>
+    <div class="middle">
+        <table>
+            <thead>
+                <tr>
+                    <th>號碼</th>
+                    <th>編號</th>
+                    <th>景點</th>
+                    <th>時間</th>
+                    <th>付款</th>
+                    <th>總計</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="order-table">
+            </tbody>
+        </table>
+    </div>
+    <div class="bottom">
+        <p>第 <span id="current-page"></span> 頁，共 <span id="total-page"></span> 頁</p>
+        <div class="pagination" id="pagination"></div>
+    </div>
+    
+</div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="{{ url_for('static', filename = 'js/order.js') }}"></script>
+{% endblock %}

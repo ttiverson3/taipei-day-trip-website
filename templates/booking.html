@@ -48,22 +48,22 @@
         <form class="payment-info">
             <label>
                 <span for="card-number">卡片號碼：</span>
-                <div class="tpfield" id="card-number"></div>
+                <div class="tpfield" id="card-number"></div><span id="check-num" style="margin-left: 5px; color: green; display: none;">&#10003;</span>
             </label>
             <label>
                 <span for="card-expiration-date">過期時間：</span>
-                <div class="tpfield" id="card-expiration-date"></div>
+                <div class="tpfield" id="card-expiration-date"></div><span id="check-date" style="margin-left: 5px; color: green; display: none;">&#10003;</span>
             </label>
             <label>
                 <span for="card-ccv">驗證密碼：</span>
-                <div class="tpfield" id="card-ccv"></div>
+                <div class="tpfield" id="card-ccv"></div><span id="check-ccv" style="margin-left: 5px; color: green; display: none;">&#10003;</span>
             </label>
         </form>
     </div>
     <hr>
     <div class="send">
         <p>總價：<span id="total-price"></span></p>
-        <button type="submit" id="orderBtn">確認訂購並付款</button>
+        <button type="submit" id="orderBtn" disabled>確認訂購並付款</button>
     </div>
 </div>
 {% endblock %}

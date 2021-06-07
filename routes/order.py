@@ -36,3 +36,18 @@ def get_order(orderNumber):
         print(e, "ERROR in routes.order.get_order()")
         response = make_response(jsonify({"error": True, "message": "伺服器內部錯誤"}), 500)
         return response
+
+@order_api.route("/orders", methods = ["GET"])
+def get_all_order():
+    try:
+        sessionId = request.cookies.get("sessionId")
+        if sessionId:
+            response = get_all_order_data(sessionId)
+            return response
+        else:
+            response = make_response(jsonify({"error": True, "message": "未登入系統，拒絕存取"}), 403)
+            return response
+    except Exception as e:
+        print(e, "ERROR in routes.order.get_all_order()")
+        response = make_response(jsonify({"error": True, "message": "伺服器內部錯誤"}), 500)
+        return response

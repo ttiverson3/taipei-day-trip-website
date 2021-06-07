@@ -172,6 +172,7 @@ let controllers = {
     sendOrder: function(e){
         e.preventDefault();
         if(models.checkInfo()){
+            // TapPay Frontend code
             const tappayStatus = TPDirect.card.getTappayFieldsStatus();
             if (tappayStatus.canGetPrime === false) {
                 alert('can not get prime')
@@ -179,28 +180,27 @@ let controllers = {
             }
             // Get prime
             TPDirect.card.getPrime((result) => {
+                // get prime 失敗
                 if (result.status !== 0) {
                     console.log('get prime error ' + result.msg)
                     return
                 }
-                // alert('get prime 成功，prime: ' + result.card.prime)
+                // get prime 成功
                 let prime = result.card.prime;
                 models.sendOrderData(prime).then((result) => {
                     // 付款失敗
-                    if(result.error){
-                        alert(result.message);
+                    if(result.data.status !== 0){
+                        localStorage.setItem("failMsg", result.data.payment.message);
                     }
-                    // 付款成功
-                    else{
-                        // 刪除預定資料
-                        models.removeBookingData().then(() => {
-                            if(models.data.ok){
-                                // localStorage.setItem("number", result.data.number);
-                                window.location.replace(`/thankyou?number=${result.data.number}`);
-                                return
-                            }
-                        })
-                    }
+                    // 訂單編號
+                    number = result.data.number
+                    // 刪除預定資料
+                    models.removeBookingData().then(() => {
+                        if(models.data.ok){
+                            window.location.replace(`/thankyou?number=${number}`);
+                            return
+                        }
+                    })
                 })
             })
         }

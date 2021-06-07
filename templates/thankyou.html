@@ -8,7 +8,7 @@
 
 {% block main %}
 <div id="thankyou-body" style="display: none;">
-    <div class="top" id="top">
+    <div class="top" id="success-top" style="display: block;">
         <h3 id="welcome-text">您好，<span id="username"></span>，已訂購的行程如下：</h3>
         <div class="order-body">
             <img id="attraction-img" src="">
@@ -20,11 +20,16 @@
                 <p>時間：<span id="order-time"></span></p>
                 <p>費用：<span id="order-price"></span></p>
             </div>
-            <div class="delete-icon" id="delBtn"></div>
         </div>
     </div>
+
+    <div class="top" id="fail-top" style="display: none;">
+        <h3>交易失敗，失敗原因如下：</h3>
+        <p style="background-color: #eee; padding: 30px 30px;" id="fail-msg"></p>
+    </div>
     <hr>
-    <h3 class="finish-text">如欲查詢歷史訂單，請至<a href="/member">會員中心</a></h3>
+    <h3 class="finish-text" style="display: none;">如欲查詢歷史訂單，請至<a href="/order">訂單查詢</a></h3>
+    <h3 class="finish-text" style="display: none;">請參考失敗原因進行後續操作，若仍無法解決您的問題，請洽<a href="#">客服中心</a>，我們將協助您處理。</h3>
 </div>
 {% endblock %}
 
